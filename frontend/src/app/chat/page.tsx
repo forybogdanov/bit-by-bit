@@ -1,25 +1,38 @@
+'use client'
+import { useCallback, useEffect, useState } from "react";
 import { Socket, io } from "socket.io-client";
 
-const PORT = process.env.SOCKET_PORT ? parseInt(process.env.SOCKET_PORT) : 3001;
+const BASE_URL = "http://localhost:4000";
+const socket = io(BASE_URL, {
+  transports: ['websocket'],
+  autoConnect: false,
+});
 
 export default function Page() {
-  const socket = io(`:${PORT}`, { path: "/api/socket", addTrailingSlash: false })
+  const [messages, setMessages] = useState<string[]>([]);
+  const [message, setMessage] = useState<string>('');
 
-  socket.on("connect", () => {
-    console.log("Connected")
-  })
+  const getMessage = useCallback(() => {
+    socket.on('message', (message: string) => {
+      setMessages([...messages, message]);
+    });
+  }, [messages]);
 
-  socket.on("disconnect", () => {
-    console.log("Disconnected")
-  })
+  useEffect(() => {
+    if (!socket.connected) {
+      socket.connect();
+    }
+    getMessage();
+  }, [messages, getMessage]);
 
-  socket.on("connect_error", async (err: any) => {
-    console.log(`connect_error due to ${err.message}`)
-    await fetch("/api/socket")
-  })
   return (
     <div>
         Chat
+        {messages.map((message, index) => (
+          <div key={index}>{message}</div>
+        ))}
+        <input type="text" value={message} onChange={(e: any) => {setMessage(e.target.value)}}></input>
+        <button onClick={() => {socket.emit("message", message); setMessage("")}}>Send</button>
     </div>
   )
 }
