@@ -9,6 +9,12 @@
 .categoryCard {
     width: calc((100vw - 2*80px - 3*36px) / 4);
     height: calc((100vw - 2*80px - 3*36px) / 4);
+    position: relative;
+    
+}
+
+.categoryCardText {
+    position: absolute;
 }
 
 .categoryCardIcon {

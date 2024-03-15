@@ -4,7 +4,7 @@ import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
 import TheatersIcon from '@mui/icons-material/Theaters';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 
 const categories = [
     {
@@ -31,8 +31,8 @@ export default function Setup() {
             <Grid display={'flex'} className={'cardsWrapper'} container>
                 {categories.map((item, index) =>
                     <Grid item key={index} className={'categoryCard'}>
+                        <Typography className={'categoryCardText'}>{item.name}</Typography>
                         <item.icon className={'categoryCardIcon'}/>
-                        {item.name}
                     </Grid>
                 )}
             </Grid>
