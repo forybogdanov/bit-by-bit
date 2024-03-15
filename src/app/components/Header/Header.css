@@ -1,0 +1,40 @@
+.header {
+    width: 100%;
+    padding: 50px 60px;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.buttonPrimary {
+    color: #FFF;
+    text-transform: none;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border-radius: 8px;
+    background: #6FC2B6;
+    width: 176px;
+    height: 40px;
+}
+
+.buttonPrimary:hover {
+    background: #55948f;
+}
+
+.buttonSecondary {
+    color: #0D152E;
+    text-transform: none;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    background: none;
+    border: none;
+    width: 176px;
+    height: 40px;
+}

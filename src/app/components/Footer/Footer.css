@@ -1,0 +1,63 @@
+.footer {
+    padding: 60px;
+    background: #0D152E;
+    width: 100%;
+}
+
+.upperPart {
+    color: #FFF;
+    width: 100%;
+    padding: 40px 20px;
+}
+
+.pageLink {
+    cursor: pointer;
+}
+
+.buttonSecondaryBordered {
+    color: #FFF;
+    text-transform: none;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    background: none;
+    width: 176px;
+    height: 40px;
+    border: 1px solid #FFF;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.divider {
+    border-color: #FFF;
+    width: 100%;
+    border-bottom-width: 1px;
+}
+
+.lowerPart {
+    padding: 30px 20px;
+}
+
+.copyrightText {
+    color: #FFF;
+    font-size: 12px;
+    font-family: Verdana, sans-serif;
+}
+
+.contactCircle {
+    background: #FFFFFF;
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
+    cursor: pointer;
+}
+
+.contactIcon {
+    width: 30px;
+    height: 30px;
+}

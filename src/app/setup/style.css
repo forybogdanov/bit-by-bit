@@ -1,0 +1,16 @@
+.setup {
+    padding: 80px;
+}
+
+.cardsWrapper {
+    gap: 36px;
+}
+
+.categoryCard {
+    width: calc((100vw - 2*80px - 3*36px) / 4);
+    height: calc((100vw - 2*80px - 3*36px) / 4);
+}
+
+.categoryCardIcon {
+    font-size: 20em;
+}
