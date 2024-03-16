@@ -15,16 +15,17 @@ const user = {
 
 const connections = [
     {
-        username: "Fory04",
-        facebook: "Forka",
-        instagram: "@forymotory",
+        username: "VladiCI",
+        facebook: "Vladimir Ivanov",
+        instagram: "@vladii",
         snapchat: "",
+        phone: "",
     },
     {
-        username: "Tonki",
+        username: "Antonka",
         facebook: "",
         instagram: "@toni_bonboni",
-        snapchat: "@dgdsg",
+        snapchat: "@gambleking",
         phone: "+028359324",
     },
 ];

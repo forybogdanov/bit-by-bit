@@ -221,7 +221,7 @@ export default function Setup() {
                                     <Typography className={'subcategoriesLabel'}>Subcategories:</Typography>
                                     <Grid display={'flex'} gap={2} className={'subcategoriesGrid'}>
                                         {item.subCategories.map((subItem, subIndex) =>
-                                            <Grid key={subIndex} className={selectedCategories?.find(cat => cat.mainIndex === item.index).subIndexes.includes(subIndex) ? 'subCategoryOptionSelected' : 'subCategoryOption'} onClick={() => handleSubCategorySelection(item.index, subIndex)}>{subItem.name}</Grid>
+                                            <Grid key={subIndex} className={(selectedCategories as any).find((cat: any) => cat.mainIndex === item.index).subIndexes.includes(subIndex) ? 'subCategoryOptionSelected' : 'subCategoryOption'} onClick={() => handleSubCategorySelection(item.index, subIndex)}>{subItem.name}</Grid>
                                         )}
                                     </Grid>
                                 </Grid>
