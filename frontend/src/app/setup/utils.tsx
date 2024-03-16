@@ -74,10 +74,6 @@ export const BooksSubCategories = [
     { index: BooksSubCategoriesIndexes.Romance, name: 'Romance' },
     { index: BooksSubCategoriesIndexes.Fantasy, name: 'Fantasy' },
     { index: BooksSubCategoriesIndexes.ScienceFiction, name: 'Science-fiction' },
-    { index: BooksSubCategoriesIndexes.Historical, name: 'Historical' },
-    { index: BooksSubCategoriesIndexes.Biography, name: 'Biography' },
-    { index: BooksSubCategoriesIndexes.SelfHelp, name: 'Self help' },
-    { index: BooksSubCategoriesIndexes.Poetry, name: 'Poetry' },
 ];
 
 const BusinessSubCategoriesIndexes = {
@@ -222,4 +218,44 @@ export const CookingSubCategories = [
     { index: CookingSubCategoriesIndexes.Vegetarian, name: 'Vegetarian' },
     { index: CookingSubCategoriesIndexes.Vegan, name: 'Vegan' },
     { index: CookingSubCategoriesIndexes.ItalianCuisine, name: 'Italian cuisine' },
+];
+
+const ReligionSubCategoriesIndexes = {
+    Christianity: 0,
+    Islam: 1,
+    Hinduism: 2,
+    Buddhism: 3,
+    Judaism: 4,
+    Atheism: 5,
+    Agnosticism: 6,
+};
+
+export const ReligionSubCategories = [
+    { index: ReligionSubCategoriesIndexes.Christianity, name: 'Christianity' },
+    { index: ReligionSubCategoriesIndexes.Islam, name: 'Islam' },
+    { index: ReligionSubCategoriesIndexes.Hinduism, name: 'Hinduism' },
+    { index: ReligionSubCategoriesIndexes.Buddhism, name: 'Buddhism' },
+    { index: ReligionSubCategoriesIndexes.Judaism, name: 'Judaism' },
+    { index: ReligionSubCategoriesIndexes.Atheism, name: 'Atheism' },
+    { index: ReligionSubCategoriesIndexes.Agnosticism, name: 'Agnosticism' },
+];
+
+const GeographySubCategoriesIndexes = {
+    Mountains: 0,
+    Rivers: 1,
+    Deserts: 2,
+    Oceans: 3,
+    Cities: 4,
+    Countries: 5,
+    Continents: 6,
+};
+
+export const GeographySubCategories = [
+    { index: GeographySubCategoriesIndexes.Mountains, name: 'Mountains' },
+    { index: GeographySubCategoriesIndexes.Rivers, name: 'Rivers' },
+    { index: GeographySubCategoriesIndexes.Deserts, name: 'Deserts' },
+    { index: GeographySubCategoriesIndexes.Oceans, name: 'Oceans' },
+    { index: GeographySubCategoriesIndexes.Cities, name: 'Cities' },
+    { index: GeographySubCategoriesIndexes.Countries, name: 'Countries' },
+    { index: GeographySubCategoriesIndexes.Continents, name: 'Continents' },
 ];
