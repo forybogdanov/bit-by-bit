@@ -17,7 +17,7 @@ let lastUser = 1;
 interface IMessage {
   text: string;
   user: string;
-
+  type: string;
 }
 
 io.on('connection', (socket: any) => {
