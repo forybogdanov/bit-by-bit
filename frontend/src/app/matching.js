@@ -158,11 +158,11 @@ const GenericQuestions = {
         "Who are some artists that have made an impact on you?"
     ],
     Sport: [
-        "What are some major sporting events that you have attend",
+        "What are some major sporting events that you have attend?",
         "Who are some legendary athletes that have left a lasting impression on you?",
     ],
     Cinema: [
-        "What are some classic movies uou like?",
+        "What are some classic movies you like?",
         "Who are some renowned directors you like?",
     ],
     Books: [
@@ -213,27 +213,27 @@ const MusicSubQuestions = {
 
 const SportSubQuestions = {
     Football: "What team do you think will win the next World Cup?",
-Basketball: "Who's your all-time favorite NBA player and why?",
-Tennis: "Have you ever tried playing tennis? What do you like about it?",
-Golf: "Do you follow any golf tournaments? Who's your favorite golfer?",
-Swimming: "Have you ever competed in a swimming race? What was it like?"
+    Basketball: "Who's your all-time favorite NBA player and why?",
+    Tennis: "Have you ever tried playing tennis? What do you like about it?",
+    Golf: "Do you follow any golf tournaments? Who's your favorite golfer?",
+    Swimming: "Have you ever competed in a swimming race? What was it like?"
 };
 
 const CinemaSubQuestions = {
     Action: "What's your go-to action movie for a movie night?",
-Comedy: "Who's a comedian that always makes you laugh?",
-Drama: "Do you prefer classic dramas or modern ones?",
-SciFi: "If you could be in a sci-fi movie, what kind of character would you play?",
-Horror: "Have you watched any horror movies that kept you up at night?"
+    Comedy: "Who's a comedian that always makes you laugh?",
+    Drama: "Do you prefer classic dramas or modern ones?",
+    SciFi: "If you could be in a sci-fi movie, what kind of character would you play?",
+    Horror: "Have you watched any horror movies that kept you up at night?"
 };
 
 
 const BooksSubQuestions = {
     Fiction: "What's a fiction book that you could read over and over again?",
-NonFiction: "Do you have a favorite self-improvement book that inspired you?",
-Mystery: "Who's your favorite detective character from a mystery novel?",
-Thriller: "Have you ever been on the edge of your seat reading a thriller?",
-Romance: "What's a classic romance novel that you think everyone should read?"
+    NonFiction: "Do you have a favorite self-improvement book that inspired you?",
+    Mystery: "Who's your favorite detective character from a mystery novel?",
+    Thriller: "Have you ever been on the edge of your seat reading a thriller?",
+    Romance: "What's a classic romance novel that you think everyone should read?"
 };
 
 const BusinessSubQuestions = {
@@ -247,10 +247,10 @@ const BusinessSubQuestions = {
 
 const ArtsSubQuestions = {
     Painting: "Do you have a favorite painting that speaks to you?",
-Sculpture: "Have you ever tried sculpting? What kind of sculpture would you create?",
-Drawing: "What's the hardest thing about drawing for you?",
-Photography: "What's the most beautiful photo you've ever taken?",
-Architecture: "What's an architectural style that you find fascinating?"
+    Sculpture: "Have you ever tried sculpting? What kind of sculpture would you create?",
+    Drawing: "What's the hardest thing about drawing for you?",
+    Photography: "What's the most beautiful photo you've ever taken?",
+    Architecture: "What's an architectural style that you find fascinating?"
 };
 
 const HistorySubQuestions = {
@@ -264,19 +264,19 @@ const HistorySubQuestions = {
 
 const ScienceSubQuestions = {
     Physics: "What's a mind-blowing fact about physics that you find fascinating?",
-Chemistry: "Do you have a favorite chemical element? Why?",
-Biology: "What's a biological process that you find amazing?",
-Astronomy: "Have you ever stargazed? What's your favorite celestial object?",
-Psychology: "What's a psychological phenomenon that you find intriguing?"
+    Chemistry: "Do you have a favorite chemical element? Why?",
+    Biology: "What's a biological process that you find amazing?",
+    Astronomy: "Have you ever stargazed? What's your favorite celestial object?",
+    Psychology: "What's a psychological phenomenon that you find intriguing?"
 };
 
 
 const TechnologySubQuestions = {
     Programming: "What programming language do you find most versatile?",
-WebDevelopment: "Do you have a favorite website design that you find impressive?",
-MobileDevelopment: "What's a mobile app that you can't live without?",
-ArtificialIntelligence: "How do you think AI will impact our daily lives in the future?",
-Blockchain: "What's an interesting use case for blockchain technology?"
+    WebDevelopment: "Do you have a favorite website design that you find impressive?",
+    MobileDevelopment: "What's a mobile app that you can't live without?",
+    ArtificialIntelligence: "How do you think AI will impact our daily lives in the future?",
+    Blockchain: "What's an interesting use case for blockchain technology?"
 };
 
 const PoliticsSubQuestions = {
@@ -289,19 +289,19 @@ const PoliticsSubQuestions = {
 
 const TravelSubQuestions = {
     AdventureTravel: "What's the most adventurous trip you've ever been on?",
-BudgetTravel: "Do you have any tips for traveling on a budget?",
-FamilyTravel: "What's a memorable family vacation you've been on?",
-SoloTravel: "Have you ever traveled solo? What did you learn from the experience?",
-LuxuryTravel: "If money was no object, where would you go for a luxurious vacation?"
+    BudgetTravel: "Do you have any tips for traveling on a budget?",
+    FamilyTravel: "What's a memorable family vacation you've been on?",
+    SoloTravel: "Have you ever traveled solo? What did you learn from the experience?",
+    LuxuryTravel: "If money was no object, where would you go for a luxurious vacation?"
 };
 
 
 const CookingSubQuestions = {
     Recipes: "What's a recipe that never fails to impress your guests?",
-Baking: "Do you have a favorite baked good that you love to make?",
-HealthyEating: "What's a healthy meal that you enjoy preparing?",
-Vegetarian: "Have you ever tried a vegetarian dish that surprised you with how tasty it was?",
-Vegan: "What's a popular vegan dish that you think everyone should try?"
+    Baking: "Do you have a favorite baked good that you love to make?",
+    HealthyEating: "What's a healthy meal that you enjoy preparing?",
+    Vegetarian: "Have you ever tried a vegetarian dish that surprised you with how tasty it was?",
+    Vegan: "What's a popular vegan dish that you think everyone should try?"
 };
 
 const ReligionSubQuestions = {
@@ -565,24 +565,24 @@ function getGenericQuestions(category) {
             return GenericQuestions.Cinema;
         case 'Books':
             return GenericQuestions.Books;
-                    case 'Business':
-                        return GenericQuestions.Business;
-                    case 'Art':
-                        return GenericQuestions.Art;
-                    case 'History':
-                        return GenericQuestions.History;
-                    case 'Science':
-                        return GenericQuestions.Science;
-                    case 'Technology':
-                        return GenericQuestions.Technology;
-                    case 'Politics':
-                        return GenericQuestions.Politics;
-                    case 'Travel':
-                        return GenericQuestions.Travel;
-                    case 'Cooking':
-                        return GenericQuestions.Cook;
-                    default:
-                        return [];
+        case 'Business':
+            return GenericQuestions.Business;
+        case 'Art':
+            return GenericQuestions.Art;
+        case 'History':
+            return GenericQuestions.History;
+        case 'Science':
+            return GenericQuestions.Science;
+        case 'Technology':
+            return GenericQuestions.Technology;
+        case 'Politics':
+            return GenericQuestions.Politics;
+        case 'Travel':
+            return GenericQuestions.Travel;
+        case 'Cooking':
+            return GenericQuestions.Cook;
+        default:
+            return [];
     }
 }
             
