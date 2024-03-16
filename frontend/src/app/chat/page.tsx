@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { darkBlue, lightBlue, orange, red, white } from "../Theme/theme";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
-
+import { questions } from "../matching";
 
 const BASE_URL = "http://localhost:4000";
 const socket = io(BASE_URL, {
@@ -114,8 +114,19 @@ const MessageBox = (props: {message: IMessage, user: number}) => {
     )
 }
 
+const getBigTopic = (AllTopics: any[], index: number) => {
+    return AllTopics[index];
+};
+
+const getQuestionString = (AllTopics: any[], index: number) => {
+    const BigTopic = getBigTopic(AllTopics, index);
+    const category = Object.keys(BigTopic)[0];
+    const question = BigTopic[category][index];
+    return question;
+}
+
 const defultChat: IMessage[] = [
-    {text: "Current topic is Music", user: 0, type: MessageType.ANNOUNCEMENT},
+    {text: getQuestionString(questions, 0), user: 0, type: MessageType.ANNOUNCEMENT},
 ];
 
 const maxTime = 20 * 1000;
