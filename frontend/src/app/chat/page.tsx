@@ -180,23 +180,6 @@ export default function Page() {
 
   useEffect(() => {
     getUser();
-    // uncomment this to set user profile
-    // const profile = {
-    //     username: "fory",
-    //     instagram: "nikiforbogdanov",
-    //     facebook: "Nikifor Bogdanov",
-    //     snapchat: "fory04",
-    //     phone: "1234567890",
-    // };
-    // const profile = {
-    //     username: "rami04",
-    //     instagram: "ramihennawi",
-    //     facebook: "Rami Hennawi",
-    //     snapchat: "ouplex",
-    //     phone: "1234567890",
-
-    // };
-    // localStorage.setItem("userProfile2", JSON.stringify(profile));
     const userProfileFromLocalStorage = localStorage.getItem("userProfile");
     if (userProfileFromLocalStorage) {
       setUserProfile(JSON.parse(userProfileFromLocalStorage));
