@@ -38,6 +38,7 @@ let votes = {
 }
 
 let connectedUsers = 0;
+let questionsCount = 0;
 
 io.on('connection', (socket: any) => {
   connectedUsers++;
@@ -57,13 +58,15 @@ io.on('connection', (socket: any) => {
     if (totalVotes >= connectedUsers) {
       if (votes[PollValue.CHANGE_TOPIC] > 0) {
         console.log('pollResults', PollValue.CHANGE_TOPIC);
-        io.emit('pollResults', PollValue.CHANGE_TOPIC);
+        questionsCount++;
+        io.emit('pollResults', {result: PollValue.CHANGE_TOPIC, questionsCount});
       } else if (votes[PollValue.CHANGE_QUESTION] > 0) {
+        questionsCount++;
         console.log('pollResults', PollValue.CHANGE_QUESTION);
-        io.emit('pollResults', PollValue.CHANGE_QUESTION);
+        io.emit('pollResults', {result: PollValue.CHANGE_QUESTION, questionsCount});
       } else {
         console.log('pollResults', PollValue.KEEP_TOPIC);
-        io.emit('pollResults', PollValue.KEEP_TOPIC);
+        io.emit('pollResults', {result: PollValue.KEEP_TOPIC, questionsCount});
       }
       votes = {
         [PollValue.CHANGE_TOPIC]: 0,
