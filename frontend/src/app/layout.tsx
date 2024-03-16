@@ -16,11 +16,12 @@ const inter = Inter({ subsets: ["latin"] });
 // };
 
 const pagesWithHeader = [
-  "/"
+  "/setup",
+  "/dashboard"
 ];
 
 const pagesWithFooter = [
-  "/"
+  "/dashboard"
 ];
 
 export default function RootLayout({

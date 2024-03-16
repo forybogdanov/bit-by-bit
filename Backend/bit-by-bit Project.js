@@ -631,16 +631,7 @@ function getArrayWithQuestions(arrayThemes) {
             // i want to fill arrayQuestionsToReturn at the given category which already has an array 
              addSubQuestions(arrayQuestionsToReturn, category, subCategory);
         }
-
     });
-
-    // Reverse the order of questions in each category
-    arrayQuestionsToReturn.forEach(category => {
-        let reversedQuestions = category[Object.keys(category)[0]].reverse();
-        category[Object.keys(category)[0]] = reversedQuestions;
-    });
-
-    console.log(arrayQuestionsToReturn);
 
     return arrayQuestionsToReturn;
 }

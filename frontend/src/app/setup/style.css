@@ -1,22 +1,317 @@
 .setup {
-    padding: 80px;
+    padding: 40px 80px;
 }
 
 .cardsWrapper {
-    gap: 36px;
+    gap: 48px;
+    padding: 70px 0 70px 0;
 }
 
 .categoryCard {
-    width: calc((100vw - 2*80px - 3*36px) / 4);
-    height: calc((100vw - 2*80px - 3*36px) / 4);
-    position: relative;
-    
+    width: calc((100% - 3*48px) / 4);
+    height: 100px;
+    display: flex;
+    border-radius: 28px;
+    align-items: center;
+    padding: 12px 24px;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.categoryCard:hover {
+    transform: scale(1.05);
+}
+
+.categoryCardSelected {
+    width: calc((100% - 3*48px) / 4);
+    height: 100px;
+    display: flex;
+    border-radius: 28px;
+    align-items: center;
+    padding: 12px 24px;
+    justify-content: space-between;
+    cursor: pointer;
+    box-shadow: 2px 4px 12px 0 rgba(0, 0, 0, 0.2);
+    transition: all .3s;
 }
 
 .categoryCardText {
-    position: absolute;
+    font-size: 28px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    font-weight: 800;
 }
 
 .categoryCardIcon {
-    font-size: 20em;
+    color: rgba(255, 255, 255, 0.5);
+    width: 86px;
+    height: 86px;
+    margin-left: -100px;
+}
+
+.subcategoriesWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.subCategoryOption {
+    padding: 0 32px;
+    color: #0D152E;
+    height: 42px;
+    font-size: 14px;
+    border-radius: 36px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .8s;
+}
+
+.subCategoryOption:hover {
+    transform: scale(1.025);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.subCategoryOptionSelected {
+    padding: 0 32px;
+    color: #0D152E;
+    height: 40px;
+    font-size: 14px;
+    border-radius: 36px;
+    cursor: pointer;
+    border: 1px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .8s;
+}
+
+.firstStep .title {
+    color: #141316;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.firstStep .subTitle {
+    color: #141316;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.firstStep .nextButton {
+    color: #FFF;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    background: rgba(13, 21, 46, 0.9);
+    border: none;
+    width: 200px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.firstStep .nextButton:disabled {
+    background: rgba(13, 21, 46, 0.4);
+}
+
+.secondStep {
+    width: 100%;
+}
+
+.secondStep .title {
+    color: #141316;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.secondStep .subTitle {
+    color: #141316;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.secondStep .selectedCategories {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    width: 100%;
+    padding: 60px 0 80px 0;
+}
+
+.selectedCategoryGroup {
+    display: flex;
+    gap: 48px;
+}
+
+.selectedCategoryGroup:hover {
+    border-radius: 28px;
+    background: rgba(101, 119, 114, 0.05);
+}
+
+.subcategoriesGrid {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.secondStep .categoryBigCard {
+    width: 25%;
+    min-width: 376px;
+    height: 160px;
+    display: flex;
+    border-radius: 28px;
+    align-items: center;
+    padding: 12px 24px;
+    justify-content: space-between;
+    box-shadow: 2px 4px 12px 0 rgba(0, 0, 0, 0.2);
+}
+
+.secondStep .subcategoriesLabel {
+    color: #141316;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.secondStep .backButton {
+    color: #0D152E;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    display: flex;
+    height: 40px;
+    padding: 0 56px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+    border-radius: 8px;
+    border: 1px solid #0D152E;
+}
+
+.secondStep .completeButton {
+    display: flex;
+    height: 40px;
+    padding: 0 56px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background: rgba(13, 21, 46, 0.9);
+    color: #FFF;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.secondStep .completeButton:disabled {
+    background: rgba(13, 21, 46, 0.4);
+}
+
+.thirdStep {
+    width: 100%;
+}
+
+.thirdStep .title {
+    color: #141316;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.thirdStep .subTitle {
+    color: #141316;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.thirdStep .routeButton {
+    display: flex;
+    height: 40px;
+    width: fit-content;
+    padding: 0 56px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    gap: 10px;
+    background: rgba(13, 21, 46, 0.9);
+    color: #FFF;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.thirdStep .routeButton:disabled {
+    background: rgba(13, 21, 46, 0.4);
+}
+
+@media only screen and (max-width: 2000px) {
+    .secondStep .categoryBigCard {
+        height: 200px;
+    }
+}
+
+@media only screen and (max-width: 1600px) {
+    .categoryCard {
+        width: calc((100% - 2*48px) / 3);
+    }
+
+    .categoryCardSelected {
+        width: calc((100% - 2*48px) / 3);
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .categoryCard {
+        width: calc((100% - 48px) / 2);
+    }
+
+    .categoryCardSelected {
+        width: calc((100% - 48px) / 2);
+    }
+
+    .subCategoryOption {
+        padding: 0 16px;
+    }
+
+    .subCategoryOptionSelected {
+        padding: 0 16px;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .selectedCategoryGroup {
+        flex-direction: column;
+        gap: 36px;
+    }
+
+    .secondStep .categoryBigCard {
+        width: 100%;
+    }
+
+    .secondStep .selectedCategories {
+        gap: 56px;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .categoryCard {
+        width: 100%;
+    }
+
+    .categoryCardSelected {
+        width: 100%;
+    }
 }
