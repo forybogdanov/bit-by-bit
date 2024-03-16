@@ -1,0 +1,121 @@
+.account {
+    padding: 40px 80px 80px 80px;
+}
+
+.account .purpleText {
+    color: #C0ACD7;
+}
+
+.account .title {
+    color: #141316;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 700;
+    font-family: GilroyExtraBold, sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 0;
+}
+
+.account .signOutButton {
+    color: #FFF;
+    text-transform: none;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border-radius: 8px;
+    background: #C0ACD7;
+    width: 176px;
+    height: 44px;
+    font-family: GilroyExtraBold, sans-serif;
+}
+
+.account .editProfileButton {
+    color: #0D152E;
+    text-transform: none;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border-radius: 8px;
+    background: #FFF;
+    border: 1px solid #0D152E;
+    width: 176px;
+    height: 44px;
+    font-family: GilroyExtraBold, sans-serif;
+}
+
+.account .signOutButton:hover {
+    background: #a38db0;
+}
+
+.account .subTitle {
+    color: #141316;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    margin-bottom: 16px;
+    font-family: GilroyExtraBold, sans-serif;
+    text-transform: uppercase;
+}
+
+.account .generalInfoText {
+    color: rgba(20, 19, 22, 0.8);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+.account .connectionsCardsWrapper {
+    display: flex;
+    gap: 36px;
+}
+
+.account .connectionsCard {
+    width: calc((100% - 3*36px) / 4);
+    display: flex;
+    border-radius: 28px;
+    padding: 24px 36px;
+    box-shadow: 2px 4px 12px 0 rgba(0, 0, 0, 0.2);
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all .3s;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+}
+
+.account .circle {
+    position: absolute;
+    top: -60px;
+    right: -20px;
+}
+
+.account .circleTwo {
+    position: absolute;
+    bottom: -100px;
+    left: 10px;
+}
+
+.account .connectionsCard:hover {
+    transform: scale(1.05);
+}
+
+.account .connectionCardName {
+    color: #141316;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 800;
+    margin-bottom: 16px;
+    font-family: GilroyExtraBold, sans-serif;
+    text-transform: uppercase;
+}
+
+.account .connectionCardOther {
+    color: #141316;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    margin-bottom: 8px;
+}

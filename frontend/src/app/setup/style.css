@@ -40,7 +40,7 @@
     font-size: 28px;
     color: #FFFFFF;
     text-transform: uppercase;
-    font-weight: 800;
+    font-family: GilroyExtraBold, sans-serif;
 }
 
 .categoryCardIcon {
@@ -60,7 +60,7 @@
     padding: 0 32px;
     color: #0D152E;
     height: 42px;
-    font-size: 14px;
+    font-size: 16px;
     border-radius: 36px;
     cursor: pointer;
     display: flex;
@@ -78,7 +78,7 @@
     padding: 0 32px;
     color: #0D152E;
     height: 40px;
-    font-size: 14px;
+    font-size: 18px;
     border-radius: 36px;
     cursor: pointer;
     border: 1px solid #000;
@@ -86,6 +86,7 @@
     align-items: center;
     justify-content: center;
     transition: all .8s;
+    font-family: GilroyBold, sans-serif;
 }
 
 .firstStep .title {
@@ -94,6 +95,7 @@
     font-style: normal;
     font-weight: 700;
     margin-bottom: 20px;
+    font-family: GilroyExtraBold, sans-serif;
 }
 
 .firstStep .subTitle {
@@ -114,6 +116,7 @@
     width: 200px;
     height: 50px;
     cursor: pointer;
+    border-radius: 10px;
 }
 
 .firstStep .nextButton:disabled {
@@ -130,6 +133,7 @@
     font-style: normal;
     font-weight: 700;
     margin-bottom: 20px;
+    font-family: GilroyExtraBold, sans-serif;
 }
 
 .secondStep .subTitle {
@@ -176,9 +180,9 @@
 
 .secondStep .subcategoriesLabel {
     color: #141316;
-    font-size: 16px;
+    font-size: 18px;
     font-style: normal;
-    font-weight: 600;
+    font-family: GilroyExtraBold, sans-serif;
 }
 
 .secondStep .backButton {
@@ -211,6 +215,7 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    border-radius: 10px;
 }
 
 .secondStep .completeButton:disabled {
@@ -227,6 +232,7 @@
     font-style: normal;
     font-weight: 700;
     margin-bottom: 20px;
+    font-family: GilroyExtraBold, sans-serif;
 }
 
 .thirdStep .subTitle {
@@ -238,7 +244,7 @@
 
 .thirdStep .routeButton {
     display: flex;
-    height: 40px;
+    height: 46px;
     width: fit-content;
     padding: 0 56px;
     justify-content: center;
@@ -251,6 +257,7 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    border-radius: 10px;
 }
 
 .thirdStep .routeButton:disabled {

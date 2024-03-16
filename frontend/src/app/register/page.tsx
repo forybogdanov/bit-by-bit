@@ -56,7 +56,7 @@ export default function Register() {
                             <TextField variant="outlined" placeholder={'Enter password'} className={'textField'}/>
                         </Grid>
                         <Grid display={'flex'} flexDirection={'column'} xs={12}>
-                            <Typography className={'textFieldLabel'}>Social Media</Typography>
+                            <Typography className={'textFieldLabel'}>Contact Information</Typography>
                             <Grid className={'socialMediaWrapper'}>
                                 <TextField variant="outlined" placeholder={'Facebook'} className={'textField socialMedia'}/>
                                 <TextField variant="outlined" placeholder={'Instagram'} className={'textField socialMedia'}/>

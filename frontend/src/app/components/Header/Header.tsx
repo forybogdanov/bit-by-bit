@@ -2,14 +2,14 @@ import * as React from "react";
 import "./Header.css";
 import { Button, Grid, Typography } from "@mui/material";
 import Image from 'next/image';
-import logo from "./black.jpg";
+import logo from "./logo.png";
 
 export default function Header() {
     return (
         <Grid className={'header'} display={'flex'} alignItems={'center'} justifyContent={'space-between'}>
             <Grid display={'flex'} columnGap={2} alignItems={'center'}>
                 <Image className={'logo'} alt={'logo'} src={logo}/>
-                <Typography>PROJECT</Typography>
+                <Typography className={'projectName'}>C R E O N</Typography>
             </Grid>
             <Grid display={'flex'} columnGap={2} alignItems={'center'}>
                 <Button className={'buttonSecondary'} href={'/signin'}>Sign in</Button>

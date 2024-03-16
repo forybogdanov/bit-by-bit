@@ -6,7 +6,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import Divider from '@mui/material/Divider';
 import Image from "next/image";
-import logo from "@/app/components/Header/black.jpg";
+import logo from "./logo.png";
 
 const contactList = [EmailIcon, FacebookIcon, LinkedInIcon];
 
@@ -19,7 +19,7 @@ export default function Footer() {
                 <Grid display={'flex'} flexDirection={'column'} rowGap={2}>
                     <Grid display={'flex'} columnGap={2} alignItems={'center'}>
                         <Image className={'logo'} alt={'logo'} src={logo}/>
-                        <Typography>PROJECT</Typography>
+                        <Typography className={'projectNameWhite'}>C R E O N</Typography>
                     </Grid>
                     <Typography>Some info about the team!</Typography>
                 </Grid>
