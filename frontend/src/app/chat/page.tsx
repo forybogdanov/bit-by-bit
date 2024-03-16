@@ -1,6 +1,6 @@
 'use client'
 import { Box, Button, FormControlLabel, Grid, IconButton, Input, InputAdornment, LinearProgress, Modal, Radio, RadioGroup, Stack, Typography } from "@mui/material";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useDebugValue, useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { darkBlue, lightBlue, orange, red, white } from "../Theme/theme";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
@@ -38,11 +38,13 @@ const style = {
 enum PollValue {
     CHANGE_TOPIC="change topic",
     KEEP_TOPIC="keep topic",
+    CHANGE_QUESTION="change question",
 }
 
 const pollOptions = [
+    {value: PollValue.KEEP_TOPIC, label: "Keep Question"},
+    {value: PollValue.CHANGE_QUESTION, label: "Change Question"},
     {value: PollValue.CHANGE_TOPIC, label: "Change Topic"},
-    {value: PollValue.KEEP_TOPIC, label: "Keep Topic"},
 ]
 
 const getMessageStyle = (props: any) => {
@@ -118,18 +120,21 @@ const getBigTopic = (AllTopics: any[], index: number) => {
     return AllTopics[index];
 };
 
-const getQuestionString = (AllTopics: any[], index: number) => {
-    const BigTopic = getBigTopic(AllTopics, index);
-    const category = Object.keys(BigTopic)[0];
-    const question = BigTopic[category][index];
+const getQuestionString = (AllTopics: any[], topicsIndex: number, questionIndex: number) => {
+    const BigTopic = getBigTopic(AllTopics, topicsIndex);
+    const topicName = Object.keys(BigTopic)[0];
+    const question = BigTopic[topicName][questionIndex];
     return question;
 }
 
+const defaultTopic = 0;
+const defaultQuestion = 0;
+
 const defultChat: IMessage[] = [
-    {text: getQuestionString(questions, 0), user: 0, type: MessageType.ANNOUNCEMENT},
+    {text: getQuestionString(questions, defaultTopic, defaultQuestion), user: 0, type: MessageType.ANNOUNCEMENT},
 ];
 
-const maxTime = 20 * 1000;
+const maxTime = 5 * 1000;
 
 export default function Page() {
   const [messages, setMessages] = useState<IMessage[]>(defultChat);
@@ -138,7 +143,9 @@ export default function Page() {
   const [chatStart, setChatStart] = useState<Date | null>();
   const [progress, setProgress] = useState(0);
   const [newTopicModal, setNewTopicModal] = useState(false);
-  const [pollResult, setPollResult] = useState<PollValue | null>(null);
+  const [vote, setVote] = useState<PollValue | null>(null);
+  const [topic, setTopic] = useState(defaultTopic);
+  const [question, setQuestion] = useState(defaultQuestion);
 
   const getMessage = useCallback(() => {
     socket.on('message', (message: IMessage) => {
@@ -170,6 +177,34 @@ export default function Page() {
   useEffect(() => {
     getUser();
   }, [user, getUser]);
+
+  const handlePollResult = useCallback(() => {
+    socket.on('pollResults', (result: any) => {
+        if (result === PollValue.CHANGE_TOPIC) {
+            const newTopicMessage: IMessage  = {
+                text: getQuestionString(questions, topic+1, 0),
+                user: 0,
+                type: MessageType.ANNOUNCEMENT,
+            };
+            setMessages([...messages, newTopicMessage]);
+            setTopic(topic+1);
+            setQuestion(0);
+        }
+        if (result === PollValue.CHANGE_QUESTION) {
+            const newQuestionMessage: IMessage  = {
+                text: getQuestionString(questions, topic, question+1),
+                user: 0,
+                type: MessageType.ANNOUNCEMENT,
+            };
+            setMessages([...messages, newQuestionMessage]);
+            setQuestion(question+1);
+        }
+    });
+  }, [messages]);
+
+  useEffect(() => {
+    handlePollResult();
+  }, [messages]);
 
     useEffect(() => {
         if (!newTopicModal) {
@@ -267,8 +302,8 @@ export default function Page() {
                 aria-labelledby="demo-radio-buttons-group-label"
                 defaultValue="female"
                 name="radio-buttons-group"
-                value={pollResult}
-                onChange={(e) => setPollResult(e.target.value as PollValue)}
+                value={vote}
+                onChange={(e) => setVote(e.target.value as PollValue)}
             >
                 {pollOptions.map((option, index) => (
                     <FormControlLabel key={index} value={option.value} control={<Radio />} label={option.label} />
@@ -277,6 +312,8 @@ export default function Page() {
             <Button variant="contained" sx={{ mt: 2 }} onClick={() =>  {
                 setNewTopicModal(false);
                 setChatStart(null);
+                socket.emit("vote", {vote});
+                setVote(null);
             }}>
                 Let's go!
             </Button>
