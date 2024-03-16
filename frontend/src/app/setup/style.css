@@ -205,7 +205,7 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
-    background: #6FC2B6;
+    background: rgba(13, 21, 46, 0.9);
     color: #FFF;
     font-size: 16px;
     font-style: normal;
@@ -214,7 +214,47 @@
 }
 
 .secondStep .completeButton:disabled {
-    background: rgba(111, 194, 182, 0.4);
+    background: rgba(13, 21, 46, 0.4);
+}
+
+.thirdStep {
+    width: 100%;
+}
+
+.thirdStep .title {
+    color: #141316;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.thirdStep .subTitle {
+    color: #141316;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.thirdStep .routeButton {
+    display: flex;
+    height: 40px;
+    width: fit-content;
+    padding: 0 56px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    gap: 10px;
+    background: rgba(13, 21, 46, 0.9);
+    color: #FFF;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.thirdStep .routeButton:disabled {
+    background: rgba(13, 21, 46, 0.4);
 }
 
 @media only screen and (max-width: 2000px) {

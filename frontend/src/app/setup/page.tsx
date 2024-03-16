@@ -235,9 +235,10 @@ export default function Setup() {
                 </Grid>
             }
             {activeTab === TabStep.CompletedSelection &&
-                <Grid>
-                    all done!!!
-                    <Button href={'/dashboard'}>go to dashboard</Button>
+                <Grid className={'thirdStep'}>
+                    <Typography className={'title'}>YOU ARE ALL SET!</Typography>
+                    <Typography className={'subTitle'}>Have fun making new connections through your favorite, little things.</Typography>
+                    <Button href={'/dashboard'} className={'routeButton'}>Go to dashboard</Button>
                 </Grid>
             }
         </Grid>
