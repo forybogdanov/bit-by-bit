@@ -14,6 +14,9 @@ import DevicesIcon from '@mui/icons-material/Devices';
 import GavelIcon from '@mui/icons-material/Gavel';
 import LocalAirportIcon from '@mui/icons-material/LocalAirport';
 import RamenDiningIcon from '@mui/icons-material/RamenDining';
+import ChurchIcon from '@mui/icons-material/Church';
+import PublicIcon from '@mui/icons-material/Public';
+import TranslateIcon from '@mui/icons-material/Translate';
 import { Button, Grid, Typography } from "@mui/material";
 import { useState } from "react";
 import {
@@ -22,7 +25,7 @@ import {
     MusicSubCategories, ScienceSubCategories,
     PoliticsSubCategories, SportSubCategories,
     TechnologySubCategories, CookingSubCategories,
-    TravelSubCategories
+    TravelSubCategories, ReligionSubCategories, GeographySubCategories
 } from "@/app/setup/utils";
 
 const categories = [
@@ -30,97 +33,121 @@ const categories = [
         index: 0,
         name: 'Music',
         icon: MusicNoteIcon,
-        lightColor: '#FFC0CB',
-        darkColor: '#fc8193',
+        lightColor: 'rgba(178,160,187,0.7)',
+        darkColor: '#5d4a65',
         subCategories: MusicSubCategories,
     },
     {
         index: 1,
         name: 'Sports',
         icon: SportsSoccerIcon,
-        lightColor: '#E6E6FA',
-        darkColor: '#9292f6',
+        lightColor: 'rgba(147,190,220,0.7)',
+        darkColor: '#325a79',
         subCategories: SportSubCategories,
     },
     {
         index: 2,
         name: 'Cinema',
         icon: TheatersIcon,
-        lightColor: '#78b678',
-        darkColor: '#34b934',
+        lightColor: 'rgba(232,114,127,0.7)',
+        darkColor: '#D61F34',
         subCategories: CinemaSubCategories,
     },
     {
         index: 3,
         name: 'Books',
         icon: AutoStoriesIcon,
-        lightColor: '#87CEEB',
-        darkColor: '#32b3e7',
+        lightColor: 'rgba(184,203,158,0.7)',
+        darkColor: '#538332',
         subCategories: BooksSubCategories,
     },
     {
         index: 4,
         name: 'Business',
         icon: BusinessCenterIcon,
-        lightColor: '#C8A2C8',
-        darkColor: '#cb59cb',
+        lightColor: 'rgba(128,179,128,0.7)',
+        darkColor: '#375d37',
         subCategories: BusinessSubCategories,
     },
     {
         index: 5,
         name: 'Art',
         icon: PaletteIcon,
-        lightColor: '#FFFF99',
-        darkColor: '#fafa47',
+        lightColor: 'rgba(246,171,101,0.7)',
+        darkColor: '#88450e',
         subCategories: ArtSubCategories,
     },
     {
         index: 6,
         name: 'History',
         icon: AccountBalanceIcon,
-        lightColor: '#AFEEEE',
-        darkColor: '#6af5f5',
+        lightColor: 'rgba(165,120,163,0.7)',
+        darkColor: '#5e3f5c',
         subCategories: HistorySubCategories,
     },
     {
         index: 7,
         name: 'Science',
         icon: ScienceIcon,
-        lightColor: '#BAA8FF',
-        darkColor: '#957bfc',
+        lightColor: 'rgba(142,168,195,0.7)',
+        darkColor: '#2f3e56',
         subCategories: ScienceSubCategories,
     },
     {
         index: 8,
         name: 'Technology',
         icon: DevicesIcon,
-        lightColor: '#FFB347',
-        darkColor: '#fa9818',
+        lightColor: 'rgba(141,161,185,0.7)',
+        darkColor: '#374659',
         subCategories: TechnologySubCategories,
     },
     {
         index: 9,
         name: 'Politics',
         icon: GavelIcon,
-        lightColor: '#98FB98',
-        darkColor: '#79f879',
+        lightColor: 'rgba(239,222,87,0.7)',
+        darkColor: '#d2c20d',
         subCategories: PoliticsSubCategories,
     },
     {
         index: 10,
         name: 'Travel',
         icon: LocalAirportIcon,
-        lightColor: '#eee4ab',
-        darkColor: '#e8d585',
+        lightColor: 'rgba(173,180,192,0.7)',
+        darkColor: '#44494f',
         subCategories: TravelSubCategories,
     },
     {
         index: 11,
         name: 'Cooking',
         icon: RamenDiningIcon,
-        lightColor: '#B0E0E6',
-        darkColor: '#88dce3',
+        lightColor: 'rgba(216,130,157,0.7)',
+        darkColor: '#772b42',
         subCategories: CookingSubCategories,
+    },
+    {
+        index: 12,
+        name: 'Religion',
+        icon: ChurchIcon,
+        lightColor: 'rgba(147,118,136,0.7)',
+        darkColor: '#4b3c44',
+        subCategories: ReligionSubCategories,
+    },
+    {
+        index: 13,
+        name: 'Geography',
+        icon: PublicIcon,
+        lightColor: 'rgba(133,179,107,0.7)',
+        darkColor: '#415b2e',
+        subCategories: GeographySubCategories,
+    },
+    {
+        index: 14,
+        name: "Languages",
+        icon: TranslateIcon,
+        lightColor: 'rgba(146,207,242,0.7)',
+        darkColor: '#236f96',
+        subCategories: [],
     }
 ]
 
@@ -149,24 +176,23 @@ export default function Setup() {
 
     const handleSubCategorySelection = (mainIndex: number, subIndex: number) => {
         const categoryIndex = selectedCategories.findIndex(item => item.mainIndex === mainIndex);
+        const updatedCategories = [...selectedCategories];
+
         if (selectedCategories[categoryIndex].subIndexes.some(subcategoryIndex => subcategoryIndex === subIndex)) {
-            const updatedCategories = [...selectedCategories];
-            updatedCategories[categoryIndex].subIndexes.filter(subcategoryIndex => subcategoryIndex !== subIndex)
-            setSelectedCategories(updatedCategories);
+            updatedCategories[categoryIndex].subIndexes = updatedCategories[categoryIndex].subIndexes.filter(subcategoryIndex => subcategoryIndex !== subIndex);
         } else {
-            const updatedCategories = [...selectedCategories];
             updatedCategories[categoryIndex].subIndexes.push(subIndex);
-            setSelectedCategories(updatedCategories);
         }
-        console.log(selectedCategories);
+
+        setSelectedCategories(updatedCategories);
     }
 
     return (
         <Grid className={'setup'} display={'flex'} container>
             {activeTab === TabStep.MainCategoriesSelection &&
-                <Grid display={'flex'} flexDirection={'column'} gap={6}>
-                    <Typography>SET UP YOUR PROFILE!</Typography>
-                    <Typography>You have to select at least 5 main categories.</Typography>
+                <Grid display={'flex'} flexDirection={'column'} className={'firstStep'}>
+                    <Typography className={'title'}>SET UP YOUR PROFILE.</Typography>
+                    <Typography className={'subTitle'}>You have to select a minimum of 5 main categories. These are the main categories on which you potential connections are based on. You can edit them later on.</Typography>
                     <Grid display={'flex'} className={'cardsWrapper'} container>
                         {categories.map((item, index) =>
                             <Grid item key={index} className={selectedCategories.some(category => category.mainIndex === index) ? 'categoryCardSelected' : 'categoryCard'} onClick={() => handleSelection(index)} sx={{ backgroundColor: selectedCategories.some(category => category.mainIndex === index) ? item.darkColor : item.lightColor }}>
@@ -175,31 +201,37 @@ export default function Setup() {
                             </Grid>
                         )}
                     </Grid>
-                    <Button disabled={selectedCategories.length < 5} onClick={() => setActiveTab(TabStep.SubCategoriesSelection)}>NEXT</Button>
+                    <Grid display={'flex'} flexDirection={'row-reverse'}>
+                        <Button disabled={selectedCategories.length < 5} onClick={() => setActiveTab(TabStep.SubCategoriesSelection)} className={'nextButton'}>NEXT</Button>
+                    </Grid>
                 </Grid>
             }
             {activeTab === TabStep.SubCategoriesSelection &&
-                <Grid display={'flex'} flexDirection={'column'} gap={6}>
-                    <Typography>SET UP YOUR PROFILE!</Typography>
-                    <Typography>Now select at least one subcategory of each category you are interested in.</Typography>
-                    <Grid display={'flex'} flexDirection={'column'} gap={12}>
+                <Grid display={'flex'} flexDirection={'column'} className={'secondStep'}>
+                    <Typography className={'title'}>SET UP YOUR PROFILE.</Typography>
+                    <Typography className={'subTitle'}>Now select at least one subcategory you are interested in per each of the main ones you already chose.</Typography>
+                    <Grid display={'flex'} flexDirection={'column'} className={'selectedCategories'}>
                         {categories.filter(category => selectedCategories.some(selectedCategory => selectedCategory.mainIndex === category.index)).map((item, index) =>
-                            <Grid key={index} display={'flex'} alignItems={'center'}>
-                                <Grid item key={index} className={'categoryCard'} sx={{ backgroundColor: item.darkColor }}>
+                            <Grid key={index} display={'flex'} alignItems={'center'} className={'selectedCategoryGroup'}>
+                                <Grid item key={index} className={'categoryBigCard'} sx={{ backgroundColor: item.darkColor }}>
                                     <Typography className={'categoryCardText'}>{item.name}</Typography>
                                     <item.icon className={'categoryCardIcon'}/>
                                 </Grid>
-                                <Grid display={'flex'} gap={2}>
-                                    {item.subCategories.map((subItem, subIndex) =>
-                                        <Grid key={subIndex} className={selectedCategories.find(cat => cat.mainIndex === item.index).subIndexes.includes(subIndex) ? 'subCategoryOptionSelected' : 'subCategoryOption'} onClick={() => handleSubCategorySelection(item.index, subIndex)}>{subItem.name}</Grid>
-                                    )}
+                                <Grid className={'subcategoriesWrapper'}>
+                                    <Typography className={'subcategoriesLabel'}>Subcategories:</Typography>
+                                    <Grid display={'flex'} gap={2} className={'subcategoriesGrid'}>
+                                        {item.subCategories.map((subItem, subIndex) =>
+                                            <Grid key={subIndex} className={selectedCategories?.find(cat => cat.mainIndex === item.index).subIndexes.includes(subIndex) ? 'subCategoryOptionSelected' : 'subCategoryOption'} onClick={() => handleSubCategorySelection(item.index, subIndex)}>{subItem.name}</Grid>
+                                        )}
+                                    </Grid>
                                 </Grid>
-
                             </Grid>
                         )}
                     </Grid>
-                    <Button onClick={() => setActiveTab(TabStep.MainCategoriesSelection)}>Go back</Button>
-                    <Button onClick={() => setActiveTab(TabStep.CompletedSelection)} disabled={!selectedCategories.every(item => item.subIndexes.length > 0)}>Complete</Button>
+                    <Grid display={'flex'} justifyContent={'space-between'}>
+                        <Button onClick={() => setActiveTab(TabStep.MainCategoriesSelection)} className={'backButton'}>Go back</Button>
+                        <Button onClick={() => setActiveTab(TabStep.CompletedSelection)} disabled={!selectedCategories.every(item => item.subIndexes.length > 0)} className={'completeButton'}>Complete</Button>
+                    </Grid>
                 </Grid>
             }
             {activeTab === TabStep.CompletedSelection &&
