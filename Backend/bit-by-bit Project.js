@@ -121,7 +121,7 @@ const TravelSubCategories = {
     Backpacking: 5,
 };
 
-const CookSubCategories = {
+const CookingSubCategories = {
     Recipes: 0,
     Baking: 1,
     HealthyEating: 2,
@@ -130,7 +130,68 @@ const CookSubCategories = {
     ItalianCuisine: 5,
 };
 
-
+const GenericQuestions = {
+    Music: [
+        "What are some popular songs in this music genre?",
+        "Who are some iconic artists in this genre?",
+        "What are the characteristics of this genre?"
+    ],
+    Sport: [
+        "What are some major sporting events in this category?",
+        "Who are some legendary athletes in this sport?",
+        "What are the rules and regulations of this sport?"
+    ],
+    Cinema: [
+        "What are some classic movies in this genre?",
+        "Who are some renowned directors in this category?",
+        "What are the common themes explored in this genre?"
+    ],
+    Books: [
+        "What are some must-read books in this category?",
+        "Who are some acclaimed authors in this genre?",
+        "What are the main themes in these types of books?"
+    ],
+    Business: [
+        "What are some key concepts in this business field?",
+        "Who are some influential figures in this industry?",
+        "What are the current trends and challenges in this sector?"
+    ],
+    Art: [
+        "What are some famous artworks in this category?",
+        "Who are some celebrated artists known for this art form?",
+        "What are the techniques used in this artistic style?"
+    ],
+    History: [
+        "What are some significant events in this historical era?",
+        "Who are some notable figures from this period?",
+        "What are the lasting impacts of this historical era?"
+    ],
+    Science: [
+        "What are some groundbreaking discoveries in this scientific field?",
+        "Who are some prominent scientists in this discipline?",
+        "What are the main theories and principles in this area?"
+    ],
+    Technology: [
+        "What are some recent advancements in this tech field?",
+        "Who are some innovators and pioneers in this sector?",
+        "What are the potential future developments in this technology?"
+    ],
+    Politics: [
+        "What are some major political movements or ideologies?",
+        "Who are some influential political leaders in this area?",
+        "What are the main challenges facing this political landscape?"
+    ],
+    Travel: [
+        "What are some top travel destinations in this category?",
+        "What are some cultural experiences one can have in these places?",
+        "What are some travel tips for exploring this region?"
+    ],
+    Cooking: [
+        "What are some classic recipes in this culinary style?",
+        "Who are some renowned chefs known for this type of cuisine?",
+        "What are the key ingredients and techniques in this cooking tradition?"
+    ]
+};
 
 const MusicSubQuestions = {
     Pop: "What are some popular pop songs of the last decade?",
