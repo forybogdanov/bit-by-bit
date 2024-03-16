@@ -43,6 +43,7 @@
     line-height: normal;
     margin-bottom: 12px;
     font-family: GilroyExtraBold, sans-serif;
+    text-align: center;
 }
 
 .login .platformName {
@@ -138,5 +139,44 @@
     border: 1px solid #DBE1EA;
     font-family: GilroyExtraBold, sans-serif;
     font-size: 18px;
+}
+
+@media only screen and (max-width: 900px) {
+    .login {
+        padding: 15vh 15vw;
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    .login .welcome {
+        font-size: 32px;
+    }
+
+    .login .platformName {
+        font-size: 34px;
+    }
+
+    .login .signUpButton {
+        width: 240px;
+    }
+
+    .login .signInButton {
+        width: 240px;
+        margin-top: -40px;
+    }
+
+    .login .subwelcome {
+        margin-bottom: 50px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .login {
+        padding: 15vh 5vw;
+    }
+
+    .login .formWrapper {
+        padding: 32px;
+    }
 }
 

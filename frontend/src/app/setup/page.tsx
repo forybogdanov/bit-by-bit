@@ -191,7 +191,7 @@ export default function Setup() {
         <Grid className={'setup'} display={'flex'} container>
             {activeTab === TabStep.MainCategoriesSelection &&
                 <Grid display={'flex'} flexDirection={'column'} className={'firstStep'}>
-                    <Typography className={'title'}>SET UP YOUR PROFILE.</Typography>
+                    <Typography className={'title'}>SET UP YOUR INTERESTS.</Typography>
                     <Typography className={'subTitle'}>You have to select a minimum of 5 main categories. These are the main categories on which you potential connections are based on. You can edit them later on.</Typography>
                     <Grid display={'flex'} className={'cardsWrapper'} container>
                         {categories.map((item, index) =>
@@ -208,7 +208,7 @@ export default function Setup() {
             }
             {activeTab === TabStep.SubCategoriesSelection &&
                 <Grid display={'flex'} flexDirection={'column'} className={'secondStep'}>
-                    <Typography className={'title'}>SET UP YOUR PROFILE.</Typography>
+                    <Typography className={'title'}>SET UP YOUR INTERESTS.</Typography>
                     <Typography className={'subTitle'}>Now select at least one subcategory you are interested in per each of the main ones you already chose.</Typography>
                     <Grid display={'flex'} flexDirection={'column'} className={'selectedCategories'}>
                         {categories.filter(category => selectedCategories.some(selectedCategory => selectedCategory.mainIndex === category.index)).map((item, index) =>
