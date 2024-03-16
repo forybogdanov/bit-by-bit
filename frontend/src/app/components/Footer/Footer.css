@@ -61,3 +61,15 @@
     width: 30px;
     height: 30px;
 }
+
+.contactIcon {
+    width: 30px;
+    height: 30px;
+}
+
+.projectNameWhite {
+    color: #FFF;
+    font-family: GilroyExtraBold, sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+}

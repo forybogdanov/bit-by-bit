@@ -1,0 +1,117 @@
+.register {
+    background: radial-gradient(198.85% 179.83% at 33.72% 173.01%, #EEF1F9 0%, rgba(237, 240, 245, 0.20) 100%);
+    padding: 15vh 25vw;
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+.register .platformName {
+    color: #C0ACD7;
+    font-weight: 900;
+    font-size: 36px;
+}
+
+.register .formWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5vw;
+    background: rgba(255, 255, 255, 0.6);
+    border: 2px solid rgba(145, 145, 145, 0.5);
+    border-radius: 50px;
+    z-index: 100;
+}
+
+.register .circleFirst {
+    position: absolute;
+    bottom: -450px;
+    left: 50px;
+}
+
+.register .circleSecond {
+    position: absolute;
+    top: -400px;
+    left: -100px;
+}
+
+.register .circleThird {
+    position: absolute;
+    top: -100px;
+    right: -100px;
+}
+
+.register .createAccountText {
+    color: #17243D;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin-bottom: 72px;
+}
+
+.register .textFieldLabel {
+    color: #17243D;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin: 0 0 6px 8px;
+}
+
+.register .textField {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.register .textField input {
+    display: flex;
+    height: 44px;
+    padding: 0 16px;
+    align-items: center;
+    gap: 12px;
+    align-self: stretch;
+    border-radius: 8px;
+    border: 1px solid #DBE1EA;
+    color: #22252f;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 100%;
+    background: #FFF;
+}
+
+.register .socialMediaWrapper {
+    gap: 24px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.register .socialMedia {
+    width: calc((100% - 24px) / 2);
+}
+
+.register .signUpButton {
+    display: flex;
+    width: 300px;
+    text-transform: none;
+    color: #FFF;
+    height: 40px;
+    font-weight: 600;
+    padding: 0 24px 0 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    border: 1px solid #DBE1EA;
+    background: #17243D;
+    margin-top: 60px;
+}
+
+
+
+.css-120jok1-MuiInputBase-root-MuiOutlinedInput-root {
+    border-radius: 8px;
+}

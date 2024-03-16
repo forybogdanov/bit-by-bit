@@ -17,11 +17,13 @@ const inter = Inter({ subsets: ["latin"] });
 
 const pagesWithHeader = [
   "/setup",
-  "/dashboard"
+  "/dashboard",
+  "/account"
 ];
 
 const pagesWithFooter = [
-  "/dashboard"
+  "/dashboard",
+  "/account"
 ];
 
 export default function RootLayout({
