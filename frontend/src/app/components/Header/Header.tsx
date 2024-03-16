@@ -12,8 +12,8 @@ export default function Header() {
                 <Typography>PROJECT</Typography>
             </Grid>
             <Grid display={'flex'} columnGap={2} alignItems={'center'}>
-                <Button className={'buttonSecondary'}>Sign in</Button>
-                <Button className={'buttonPrimary'}>Join us now</Button>
+                <Button className={'buttonSecondary'} href={'/signin'}>Sign in</Button>
+                <Button className={'buttonPrimary'} href={'/register'}>Join us now</Button>
             </Grid>
         </Grid>
     )

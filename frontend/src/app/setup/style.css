@@ -183,12 +183,12 @@
 
 .secondStep .backButton {
     color: #0D152E;
-    font-size: 16px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
     display: flex;
-    height: 40px;
+    height: 50px;
     padding: 0 56px;
     justify-content: center;
     align-items: center;
@@ -200,14 +200,14 @@
 
 .secondStep .completeButton {
     display: flex;
-    height: 40px;
+    height: 50px;
     padding: 0 56px;
     justify-content: center;
     align-items: center;
     gap: 10px;
     background: rgba(13, 21, 46, 0.9);
     color: #FFF;
-    font-size: 16px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;

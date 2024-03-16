@@ -30,8 +30,8 @@ export default function Footer() {
                         )}
                     </Grid>
                     <Grid display={'flex'} flexDirection={'column'} rowGap={3}>
-                        <Button className={'buttonSecondaryBordered'}>Sign in</Button>
-                        <Button className={'buttonPrimary'}>Join us now</Button>
+                        <Button className={'buttonSecondaryBordered'} href={'/signin'}>Sign in</Button>
+                        <Button className={'buttonPrimary'} href={'/register'}>Join us now</Button>
                     </Grid>
                 </Grid>
             </Grid>
