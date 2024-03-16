@@ -409,17 +409,6 @@ function simularCategories(yourProfile, profilesArr) {
 }
 
 // 3.
-/*
-function getRandomElement(arr) {
-    if (arr.length === 0) {  
-        return undefined; // Handle empty array case
-    }
-  
-    const randomIndex = Math.floor(Math.random() * arr.length);
-
-    return arr[randomIndex];
-}
-*/
 function getRandomOneCategory(n) {
     const onesCount = countOneBits(n);
 
@@ -643,6 +632,7 @@ function getArrayWithQuestions(arrayThemes) {
              addSubQuestions(arrayQuestionsToReturn, category, subCategory);
         }
     });
+
     return arrayQuestionsToReturn;
 }
 
