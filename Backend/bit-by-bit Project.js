@@ -14,7 +14,9 @@ const Categories = {
     Technology: 8,
     Politics: 9,
     Travel: 10,
-    Cook: 11
+    Cooking: 11,
+    Religion:12,
+    Geography:13
 };
 
 const MusicSubCategories = {
@@ -407,16 +409,6 @@ function simularCategories(yourProfile, profilesArr) {
 }
 
 // 3.
-function getRandomElement(arr) {
-    if (arr.length === 0) {  
-        return undefined; // Handle empty array case
-    }
-  
-    const randomIndex = Math.floor(Math.random() * arr.length);
-
-    return arr[randomIndex];
-}
-
 function getRandomOneCategory(n) {
     const onesCount = countOneBits(n);
 
@@ -512,10 +504,144 @@ function pickRandomTheme(arrayThemes){
 
     return result;
 }
+function getSubQuestions(category  ,subCategory) {
+    let questionsArr = [];
+    console.log(category)
+    switch (category) {
+        case 'Music':
+            questionsArr = MusicSubQuestions[subCategory];
+            return questionsArr;
+            
+        case 'Sport':
+            questionsArr = SportSubQuestions[subCategory];
+            return questionsArr;
+        case 'Cinema':
+            questionsArr = CinemaSubQuestions[subCategory];
+            return questionsArr;
+        case 'Books':
+            questionsArr = BooksSubQuestions[subCategory];
+            return questionsArr;
+        case 'Business':
+            questionsArr = BusinessSubQuestions[subCategory];
+            return questionsArr;
+        case 'Art':
+            questionsArr = ArtsSubQuestions[subCategory];
+            return questionsArr;
+        case 'History':
+            questionsArr = HistorySubQuestions[subCategory];
+            return questionsArr;
+        case 'Science':
+            questionsArr = ScienceSubQuestions[subCategory];
+            return questionsArr;
+        case 'Technology':
+            questionsArr = TechnologySubQuestions[subCategory];
+            return questionsArr;
+        case 'Politics':
+            questionsArr = PoliticsSubQuestions[subCategory];
+            return questionsArr;
+        case 'Travel':
+            questionsArr = TravelSubQuestions[subCategory];
+            return questionsArr;
+        case 'Cooking':
+            questionsArr = CookingSubQuestions[subCategory];
+            return questionsArr;
+        default:
+            questionsArr = [];
+            break;
+    }
 
+    // Push an object with category as key and questionsArr as value
+    arrayQuestionsToReturn.push({ [category]: questionsArr });
 
-function getArrayWithQuestions(arrayThemes){
-    console.log(arrayThemes)
+    return questionsArr;
+}
+
+function addSubQuestions(arrayToReturn, category, subcategory) {
+    // Find the object in arrayToReturn with the matching category
+    let categoryObject = arrayToReturn.find(obj => obj.hasOwnProperty(category));
+
+    // If the category object exists and it already has an array of questions
+    if (categoryObject && Array.isArray(categoryObject[category])) {
+        categoryObject[category].push(getSubQuestions(category, subcategory));
+    } else {
+        // If the category object doesn't exist or doesn't have an array yet, create it
+        let newCategoryObject = {};
+        newCategoryObject[category] = [getSubQuestions(category, subcategory)];
+        arrayToReturn.push(newCategoryObject);
+    }
+}
+
+function getGenericQuestions(category) {
+    switch (category) {
+        case 'Music':
+            console.log(GenericQuestions.Music)
+            return GenericQuestions.Music;
+        case 'Sport':
+            return GenericQuestions.Sport;
+        case 'Cinema':
+            return GenericQuestions.Cinema;
+        case 'Books':
+            return GenericQuestions.Books;
+                    case 'Business':
+                        return GenericQuestions.Business;
+                    case 'Art':
+                        return GenericQuestions.Art;
+                    case 'History':
+                        return GenericQuestions.History;
+                    case 'Science':
+                        return GenericQuestions.Science;
+                    case 'Technology':
+                        return GenericQuestions.Technology;
+                    case 'Politics':
+                        return GenericQuestions.Politics;
+                    case 'Travel':
+                        return GenericQuestions.Travel;
+                    case 'Cooking':
+                        return GenericQuestions.Cook;
+                    default:
+                        return [];
+    }
+}
+            
+function addGenericQuestions(arrayQuestionsToReturn,category){
+    let questionsArr = getGenericQuestions(category);
+    
+    let matchedObj={};
+    matchedObj[category] = questionsArr;
+    arrayQuestionsToReturn.push(matchedObj)
+    
+}
+
+function getArrayWithQuestions(arrayThemes) {
+    let arrayQuestionsToReturn = [];
+
+    arrayThemes.forEach(element => {
+        let category = Object.keys(element)[0];
+        let subCategory = Object.values(element)[0];
+
+        // Check if the category exists in arrayQuestionsToReturn
+        let categoryExists = arrayQuestionsToReturn.some(obj => obj.hasOwnProperty(category));
+
+        if (categoryExists) {
+            // If category exists, add questions to existing array
+             addSubQuestions(arrayQuestionsToReturn, category, subCategory);
+        } else {
+            // If category doesn't exist, add generic questions
+            addGenericQuestions(arrayQuestionsToReturn, category);
+            // i want to fill arrayQuestionsToReturn at the given category which already has an array 
+             addSubQuestions(arrayQuestionsToReturn, category, subCategory);
+        }
+    });
+
+    // Reverse the order of questions in each category
+    arrayQuestionsToReturn.forEach(category => {
+        let reversedQuestions = category[Object.keys(category)[0]].reverse();
+        category[Object.keys(category)[0]] = reversedQuestions;
+    });
+
+    console.log(arrayQuestionsToReturn);
+
+    return arrayQuestionsToReturn;
 }
 
 // Call functions
