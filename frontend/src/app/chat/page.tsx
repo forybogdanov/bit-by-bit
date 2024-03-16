@@ -149,6 +149,7 @@ export default function Page() {
   const [question, setQuestion] = useState(defaultQuestion);
   const [questionsCount, setQuestionsCount] = useState(0);
   const [openExchangeModal, setOpenExchangeModal] = useState(true);
+  const [userProfile, setUserProfile] = useState<{username: string, instagram: string}>({username: "", instagram: ""});
 
   const getMessage = useCallback(() => {
     socket.on('message', (message: IMessage) => {
@@ -179,6 +180,27 @@ export default function Page() {
 
   useEffect(() => {
     getUser();
+    // uncomment this to set user profile
+    // const profile = {
+    //     username: "fory",
+    //     instagram: "nikiforbogdanov",
+    //     facebook: "Nikifor Bogdanov",
+    //     snapchat: "fory04",
+    //     phone: "1234567890",
+    // };
+    // const profile = {
+    //     username: "rami04",
+    //     instagram: "ramihennawi",
+    //     facebook: "Rami Hennawi",
+    //     snapchat: "ouplex",
+    //     phone: "1234567890",
+
+    // };
+    // localStorage.setItem("userProfile2", JSON.stringify(profile));
+    const userProfileFromLocalStorage = localStorage.getItem("userProfile");
+    if (userProfileFromLocalStorage) {
+      setUserProfile(JSON.parse(userProfileFromLocalStorage));
+    }
   }, [user, getUser]);
 
   const handlePollResult = useCallback(() => {
@@ -235,6 +257,9 @@ export default function Page() {
   return (
     <Stack sx={{width: "100vw", height: "100vh"}}>
         <Grid container width={"100%"} height={"80px"} sx={{background: darkBlue}}>
+            <Typography sx={{color: white}}>
+                {userProfile?.username}
+            </Typography>
         </Grid>
         <Grid container justifyContent={"center"}>
             <Grid sx={{

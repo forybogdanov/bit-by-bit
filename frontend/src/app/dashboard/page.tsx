@@ -1,8 +1,10 @@
+'use client'
 import * as React from "react";
 import "./style.css";
 import Image from "next/image";
 import { Grid, Typography } from "@mui/material";
 import img from "./black.jpg";
+import { useRouter } from 'next/navigation';
 
 const roomOptions = [
     {
@@ -48,6 +50,7 @@ function CircleThird() {
 }
 
 export default function Page() {
+    const router = useRouter();
     return (
         <Grid>
             <Grid className={'firstSection'}>
@@ -60,7 +63,9 @@ export default function Page() {
                 </Grid>
                 <Grid className={'roomsWrapper'}>
                     {roomOptions.map((item, index) =>
-                        <Grid key={index} className={'roomCard'}>
+                        <Grid key={index} className={'roomCard'} onClick={() => {
+                            router.push('/chat');
+                        }}>
                             <Typography className={'roomCardTitle'}>{item.name}</Typography>
                             <CircleFirst/>
                             {index > 0 && <CircleSecond/>}
