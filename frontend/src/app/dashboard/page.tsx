@@ -1,10 +1,13 @@
 import * as React from "react";
 import "./style.css";
+import { Grid } from "@mui/material";
 
 export default function Page() {
     return (
-        <div>
-            hello
-        </div>
+        <Grid>
+            <Grid>
+                
+            </Grid>
+        </Grid>
     )
 }
