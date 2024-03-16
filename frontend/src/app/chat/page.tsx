@@ -135,6 +135,7 @@ const defultChat: IMessage[] = [
 ];
 
 const maxTime = 5 * 1000;
+const maxQuestions = 2;
 
 export default function Page() {
   const [messages, setMessages] = useState<IMessage[]>(defultChat);
@@ -146,6 +147,8 @@ export default function Page() {
   const [vote, setVote] = useState<PollValue | null>(null);
   const [topic, setTopic] = useState(defaultTopic);
   const [question, setQuestion] = useState(defaultQuestion);
+  const [questionsCount, setQuestionsCount] = useState(0);
+  const [openExchangeModal, setOpenExchangeModal] = useState(true);
 
   const getMessage = useCallback(() => {
     socket.on('message', (message: IMessage) => {
@@ -179,7 +182,8 @@ export default function Page() {
   }, [user, getUser]);
 
   const handlePollResult = useCallback(() => {
-    socket.on('pollResults', (result: any) => {
+    socket.on('pollResults', ({result, questionsCount }: any) => {
+        setQuestionsCount(questionsCount);
         if (result === PollValue.CHANGE_TOPIC) {
             const newTopicMessage: IMessage  = {
                 text: getQuestionString(questions, topic+1, 0),
@@ -215,13 +219,18 @@ export default function Page() {
                 const progress = (elapsed / maxTime) * 100;
                 setProgress(progress);
                 if (progress >= 100) {
-                    setNewTopicModal(true);
+                    console.log(questionsCount);
+                    if (questionsCount < maxQuestions) {
+                        setNewTopicModal(true);
+                    } else {
+                        setOpenExchangeModal(true);
+                    }
                 }
             }
             }, 100);
             return () => clearInterval(interval);
         }
-    }, [chatStart, newTopicModal]);
+    }, [chatStart, newTopicModal, questionsCount]);
 
   return (
     <Stack sx={{width: "100vw", height: "100vh"}}>
@@ -317,6 +326,22 @@ export default function Page() {
             }}>
                 Let's go!
             </Button>
+        </Box>
+        </Modal>
+        <Modal
+        open={openExchangeModal}>
+        <Box sx={style}>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+               Do you want to exchange contact information with this person?
+            </Typography>
+            <Grid container gap="20px">
+                <Button variant="contained" sx={{ mt: 2, backgroundColor: red }}>
+                    No, thanks!
+                </Button>
+                <Button variant="contained" sx={{ mt: 2, backgroundColor: darkBlue }}>
+                    Of course!
+                </Button>
+            </Grid>
         </Box>
         </Modal>
     </Stack>
