@@ -79,7 +79,6 @@
     padding: 24px 36px;
     box-shadow: 2px 4px 12px 0 rgba(0, 0, 0, 0.2);
     justify-content: space-between;
-    cursor: pointer;
     transition: all .3s;
     align-items: flex-start;
     position: relative;
