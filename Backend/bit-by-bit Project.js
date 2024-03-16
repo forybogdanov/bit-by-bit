@@ -329,10 +329,7 @@ function pickRandomTheme(arrayThemes){
     console.log(result)
     console.log(arrayThemes)
     return result;
-}
-
-
-
+}s
 
 chosenChatThemeArray(simularCategories(Profiles[0],Profiles))
 pickRandomTheme(chosenChatThemeArray(simularCategories(Profiles[0],Profiles)))
