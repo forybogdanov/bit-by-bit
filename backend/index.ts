@@ -12,10 +12,22 @@ const PORT = process.env.PORT || 4000;
 app.get('/', (_req: any, _res: any) => {
 });
 
+let lastUser = 1;
+
+interface IMessage {
+  text: string;
+  user: string;
+
+}
+
 io.on('connection', (socket: any) => {
   console.log('a user connected');
-  socket.on('message', (message: string) => {
+  socket.on('message', (message: IMessage) => {
     io.emit('message', message);
+  });
+  socket.on('newUser', () => {
+    socket.emit('newUser', lastUser);
+    lastUser++;
   });
 });
 
