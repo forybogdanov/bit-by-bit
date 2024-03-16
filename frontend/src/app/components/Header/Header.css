@@ -22,6 +22,8 @@
     width: 176px;
     height: 44px;
     font-family: GilroyExtraBold, sans-serif;
+    border: none;
+    cursor: pointer;
 }
 
 .buttonPrimary:hover {
@@ -44,8 +46,22 @@
 
 .projectName {
     color: #0D152E;
-    font-family: GilroyExtraBold, sans-serif;
+    font-family: GilroyExtraBold, sans-serif !important;
     font-weight: 700;
     font-size: 20px;
     cursor: pointer;
+}
+
+.username {
+    color: #0D152E;
+    font-family: GilroyExtraBold, sans-serif !important;
+    font-weight: 600;
+    font-size: 18px;
+    cursor: pointer;
+    width: 176px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: none;
 }
