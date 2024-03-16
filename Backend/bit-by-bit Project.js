@@ -1,6 +1,7 @@
+// General constants
 var Profiles = [];
-//music, sport , cinema, boks, biznes, arts, history, science, technology, politics, travel, cook
 
+// Categories: music, sport , cinema, boks, biznes, arts, history, science, technology, politics, travel, cook
 const Categories = {
     Music: 0,
     Sport: 1,
@@ -129,48 +130,43 @@ const CookSubCategories = {
     ItalianCuisine: 5,
 };
 
-//.addEventListener("click",function(){ })
+// Functions
+// 1.
+function createNumberWithBitsAtIndex(indexes) {
+    let number = 0;
 
-function createNumberWithBitAtIndex(indexes) {
-     let number = 0;
-     for (let index of indexes) {
-       number |= (1 << index-1);
-     }
+    for (let index of indexes) {
+        number |= (1 << index-1);
+    }
 
-     return number;
+    return number;
 }
 
 function setProfile(arrayCategories) {
-     let person = {};
+    let person = {};
    
-     // Iterate over the array of categories
-     for (let element of arrayCategories) {
-       let category = Object.keys(element)[0]; // Get the category name
-       let subcategory = element[category]; // Get the subcategory values
-       let number = createNumberWithBitAtIndex(subcategory);
+    // Iterate over the array of categories
+    for (let element of arrayCategories) {
+        let category = Object.keys(element)[0]; // Get the category name
+        let subcategory = element[category]; // Get the subcategory values
+        let number = createNumberWithBitsAtIndex(subcategory);
    
-       // Use assignment to add key-value pair to the person object
-       person[category] = number;
-     }
-   
-     // Log the constructed person object
-     console.log(person);
+        // Use assignment to add key-value pair to the person object
+        person[category] = number;
+    }
      
-     // Add the constructed person object to the Profiles array
-     Profiles.push(person);
+    // Add the constructed person object to the Profiles array
+    Profiles.push(person);
 }
-    // Example usage
-    setProfile([{1: [2, 5]}, {0: [3, 4]}, {2: [1, 6]}]);
-    setProfile([{2: [1, 6]}, {1: [3, 4]}, {3: [2, 5]}]);
-   
-    console.log(Profiles); // Optionally, log the Profiles array to see all profiles
 
+// 2.
 function countOneBits(returnValue) {
-     let count = 0;
-     while (returnValue) {
+    let count = 0;
+
+    while (returnValue) {
         count += returnValue & 1; // Add the LSB to count if it is 1
         returnValue = returnValue >>> 1; // Logical shift right by 1 bit
-     }
+    }
    
     return count;
 }
@@ -178,80 +174,85 @@ function countOneBits(returnValue) {
 function similarSubcategories(yourSubCategory, otherSubCategory){
     let returnValue = yourSubCategory & otherSubCategory;
 
-     if (countOneBits(returnValue) >= 1) {
+    if (countOneBits(returnValue) >= 1) {
         return returnValue;
-     }
-     else {
+    }
+    else {
         return 0;
-     }
+    }
 }
 
 function simularCategories(yourProfile, profilesArr) {
     let arrayReturn = [];
     
-     for (const curProfile of profilesArr) {
-          let curProfileArr = Object.entries(curProfile);
-          for (let [category, subcategory] of curProfileArr) {
-              if (yourProfile.hasOwnProperty(category)) {
-                    let similarCategoriesCount = similarSubcategories(yourProfile[category], subcategory);
-                    if (similarCategoriesCount !== 0 && !arrayReturn.some(obj => obj[category] === similarCategoriesCount)) {
-                         let matchedObj = {};
-                         matchedObj[category] = similarCategoriesCount;
-                         arrayReturn.push(matchedObj);
-                    }
-               }
-          }
-     }
+    for (const curProfile of profilesArr) {
+        let curProfileArr = Object.entries(curProfile);
+        for (let [category, subcategory] of curProfileArr) {
+            if (yourProfile.hasOwnProperty(category)) {
+                let similarCategoriesCount = similarSubcategories(yourProfile[category], subcategory);
+                if (similarCategoriesCount !== 0 && !arrayReturn.some(obj => obj[category] === similarCategoriesCount)) {
+                    let matchedObj = {};
+                    matchedObj[category] = similarCategoriesCount;
+                    arrayReturn.push(matchedObj);
+                }
+            }
+        }
+    }
 
     return arrayReturn;
 }
-simularCategories(Profiles[0],Profiles);
 
+// 3.
 function getRandomElement(arr) {
-     if (arr.length === 0) {  
-         return undefined; // Handle empty array case
-     }
+    if (arr.length === 0) {  
+        return undefined; // Handle empty array case
+    }
   
-     const randomIndex = Math.floor(Math.random() * arr.length);
-     return arr[randomIndex];
+    const randomIndex = Math.floor(Math.random() * arr.length);
+
+    return arr[randomIndex];
 }
 
 function getRandomOneCategory(n) {
-     const onesCount = countOneBits(n);
+    const onesCount = countOneBits(n);
 
-     // Choose a random "1" bit
-     const randomBitIndex = Math.floor(Math.random() * onesCount) + 1;
+    // Choose a random "1" bit
+    const randomBitIndex = Math.floor(Math.random() * onesCount) + 1;
 
-     let currentBitIndex = 0;
-     for (let bitIndex = 0; n > 0; bitIndex++) {
-         if (n & 1) {
-               currentBitIndex++;
-               if (currentBitIndex === randomBitIndex) {
+    let currentBitIndex = 0;
+
+    for (let bitIndex = 0; n > 0; bitIndex++) {
+        if (n & 1) {
+            currentBitIndex++;
+
+            if (currentBitIndex === randomBitIndex) {
                 // Found the randomly chosen "1" bit  
-                   return 1 << bitIndex;
-               }
-          }
-          n = n >>> 1; // Use unsigned right shift
-     }
+                return 1 << bitIndex;
+            }
+        }
+
+        n = n >>> 1; // Use unsigned right shift
+    }
 }
 
 function getSubcategories(categoryIndex) {
-     switch(categoryIndex) {
-          case Categories.Music:
-              return MusicSubCategories;
-          case Categories.Sport:
-              return SportSubCategories;
-          case Categories.Cinema:
-              return CinemaSubCategories;
-          case Categories.Books:
-              return BooksSubCategories;
-          case Categories.Business:
-              return BusinessSubCategories;
-          default:
-              return {};
-     }
+    switch(categoryIndex) {
+        case Categories.Music:
+            return MusicSubCategories;
+        case Categories.Sport:
+            return SportSubCategories;
+        case Categories.Cinema:
+            return CinemaSubCategories;
+        case Categories.Books:
+            return BooksSubCategories;
+        case Categories.Business:
+            return BusinessSubCategories;
+        default:
+            return {};
+    }
 }
 
+/*
 function chosenChatTheme(arrayReturn) {
     let categorySubcategoryElement =  getRandomElement(arrayReturn);
     let categoryIndex = Number(Object.keys(categorySubcategoryElement));
@@ -278,3 +279,70 @@ function chooseChatArray(arrayReturn) {
 
      return arrThemes;
 }
+*/
+
+//Get array with chosen similar themes
+function getIndexesSubcategories(subIndex){
+    let positions = [];
+    let position = 0;
+      
+    while (subIndex > 0) {
+        if (subIndex & 1) {
+            positions.push(position);
+        }
+
+        subIndex >>= 1; // Shift number to the right by 1 bit
+        position++;
+    }
+      
+    return positions;   
+}
+
+// 4.
+function fillArrayThemes(arrayThemes, categoryIndex, subIndex){
+    let categoryName = Object.keys(Categories).find(key => Categories[key] === categoryIndex);
+    let indexesPosition = getIndexesSubcategories(subIndex);
+    
+    for (let index = 0; index < indexesPosition.length; index++) {
+        let themeObject={};
+        themeObject[categoryName]= Object.keys(getSubcategories(categoryIndex)).find(key=> getSubcategories(categoryIndex)[key] === indexesPosition[index]);
+        arrayThemes.push(themeObject);
+    }
+
+    return arrayThemes;
+}
+
+function chosenChatThemeArray(arrayReturn){
+    let arrayThemes = [];
+
+    arrayReturn.forEach(element => {
+        let categoryIndex =Number(Object.keys(element));
+        let subIndex = Number(Object.values(element));
+        fillArrayThemes(arrayThemes,categoryIndex,subIndex);
+    });
+
+    return arrayThemes;
+}
+
+//choose a random themes
+function pickRandomTheme(arrayThemes){
+    if (arrayThemes.length === 0) {
+        return undefined; // Handle empty array case
+    }
+  
+    const randomIndex = Math.floor(Math.random() * arrayThemes.length);
+    let result = arrayThemes.splice(randomIndex, 1);
+    console.log(result);
+    console.log(arrayThemes);
+
+    return result;
+}s
+
+// Call functions
+setProfile([{1: [2, 5]}, {0: [3, 4]}, {2: [1, 6]}]);
+setProfile([{2: [1, 6]}, {1: [3, 4]}, {3: [2, 5]}]);
+console.log(Profiles); // Optionally, log the Profiles array to see all profiles
+simularCategories(Profiles[0], Profiles);
+chosenChatThemeArray(simularCategories(Profiles[0], Profiles));
+pickRandomTheme(chosenChatThemeArray(simularCategories(Profiles[0], Profiles)));
+chosenChatTheme(simularCategories(Profiles[0],Profiles));
