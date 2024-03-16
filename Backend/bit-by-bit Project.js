@@ -130,6 +130,26 @@ const CookingSubCategories = {
     ItalianCuisine: 5,
 };
 
+const ReligionSubCategories = {
+    Christianity: 0,
+    Islam: 1,
+    Hinduism: 2,
+    Buddhism: 3,
+    Judaism: 4,
+    Atheism: 5,
+    Agnosticism: 6,
+};
+
+const GeographySubCategories = {
+    Mountains: 0,
+    Rivers: 1,
+    Deserts: 2,
+    Oceans: 3,
+    Cities: 4,
+    Countries: 5,
+    Continents: 6,
+};
+
 const GenericQuestions = {
     Music: [
         "What are some popular songs in this music genre?",
@@ -294,7 +314,25 @@ const CookingSubQuestions = {
     Vegan: "What are some popular vegan substitutes for common ingredients?"
 };
 
+const ReligionSubQuestions = {
+    Christianity: "What is the significance of the resurrection of Jesus in Christianity?",
+    Islam: "What are the Five Pillars of Islam?",
+    Hinduism: "What is the concept of Karma in Hinduism?",
+    Buddhism: "What are the Four Noble Truths of Buddhism?",
+    Judaism: "What is the importance of the Torah in Judaism?",
+    Atheism: "How do atheists find meaning in life without belief in a deity?",
+    Agnosticism: "What distinguishes agnosticism from atheism?"
+};
 
+const GeographySubQuestions = {
+    Mountains: "What is the tallest mountain in the world, and where is it located?",
+    Rivers: "Which river is known as the longest river in the world?",
+    Deserts: "What are some survival strategies for the desert environment?",
+    Oceans: "How do ocean currents affect global climate?",
+    Cities: "Which city is considered the oldest continuously inhabited city in the world?",
+    Countries: "What country has the largest population?",
+    Continents: "Which continent is the largest by area?"
+};
 
 // Functions
 // 1.
@@ -476,14 +514,20 @@ function pickRandomTheme(arrayThemes){
 }
 
 
-
-
+function getArrayWithQuestions(arrayThemes){
+    console.log(arrayThemes)
+}
 
 // Call functions
 setProfile([{1: [2, 5]}, {0: [3, 4]}, {2: [1, 6]}]);
 setProfile([{2: [1, 6]}, {1: [3, 4]}, {3: [2, 5]}]);
 console.log(Profiles); // Optionally, log the Profiles array to see all profiles
-simularCategories(Profiles[0], Profiles);
-chosenChatThemeArray(simularCategories(Profiles[0], Profiles));
-pickRandomTheme(chosenChatThemeArray(simularCategories(Profiles[0], Profiles)));
-chosenChatTheme(simularCategories(Profiles[0],Profiles));
+//simularCategories(Profiles[0], Profiles);
+//chosenChatThemeArray(simularCategories(Profiles[0], Profiles));
+//pickRandomTheme(chosenChatThemeArray(simularCategories(Profiles[0], Profiles)));
+//chosenChatTheme(simularCategories(Profiles[0],Profiles));
+
+let theme = simularCategories(Profiles[0], Profiles);
+let chosenTheme = chosenChatThemeArray(theme)
+let questions = getArrayWithQuestions(chosenTheme);
+getArrayWithQuestions(chosenTheme);
