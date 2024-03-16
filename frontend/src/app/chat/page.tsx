@@ -1,10 +1,9 @@
 'use client'
-import { Box, Button, FormControlLabel, Grid, IconButton, Input, InputAdornment, Modal, Radio, RadioGroup, Stack, Typography } from "@mui/material";
+import { Box, Button, FormControlLabel, Grid, IconButton, Input, InputAdornment, LinearProgress, Modal, Radio, RadioGroup, Stack, Typography } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
-import { Socket, io } from "socket.io-client";
+import { io } from "socket.io-client";
 import { darkBlue, lightBlue, orange, red, white } from "../Theme/theme";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
-import { grey } from "@mui/material/colors";
 
 
 const BASE_URL = "http://localhost:4000";
@@ -119,18 +118,25 @@ const defultChat: IMessage[] = [
     {text: "Current topic is Music", user: 0, type: MessageType.ANNOUNCEMENT},
 ];
 
+const maxTime = 20 * 1000;
+
 export default function Page() {
   const [messages, setMessages] = useState<IMessage[]>(defultChat);
   const [message, setMessage] = useState<string>('');
   const [user, setUser] = useState(0);
-  const [open, setOpen] = useState(false);
+  const [chatStart, setChatStart] = useState<Date | null>();
+  const [progress, setProgress] = useState(0);
+  const [newTopicModal, setNewTopicModal] = useState(false);
+  const [pollResult, setPollResult] = useState<PollValue | null>(null);
 
   const getMessage = useCallback(() => {
     socket.on('message', (message: IMessage) => {
-        console.log(messages);
+        if (!chatStart) {
+            setChatStart(new Date());
+        }
         setMessages([...messages, message]);
     });
-  }, [messages]);
+  }, [messages, chatStart]);
 
   const getUser = useCallback(() => {
     socket.on('newUser', (newUser: number) => {
@@ -148,11 +154,28 @@ export default function Page() {
       socket.connect();
     }
     getMessage();
-  }, [messages, getMessage]);
+  }, [messages, getMessage, chatStart]);
 
   useEffect(() => {
     getUser();
   }, [user, getUser]);
+
+    useEffect(() => {
+        if (!newTopicModal) {
+            const interval = setInterval(() => {
+            if (chatStart) {
+                const now = new Date();
+                const elapsed = now.getTime() - chatStart?.getTime();
+                const progress = (elapsed / maxTime) * 100;
+                setProgress(progress);
+                if (progress >= 100) {
+                    setNewTopicModal(true);
+                }
+            }
+            }, 100);
+            return () => clearInterval(interval);
+        }
+    }, [chatStart, newTopicModal]);
 
   return (
     <Stack sx={{width: "100vw", height: "100vh"}}>
@@ -168,6 +191,9 @@ export default function Page() {
                 <Typography>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 </Typography>
+                {chatStart && (
+                    <LinearProgress variant="determinate" value={progress} />
+                )}
             </Grid>
         </Grid>
         <Stack sx={{
@@ -215,8 +241,7 @@ export default function Page() {
         />
       </Grid>
       <Modal
-        open={open}
-        onClose={() => setOpen(false)}
+        open={newTopicModal}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         >
@@ -231,12 +256,17 @@ export default function Page() {
                 aria-labelledby="demo-radio-buttons-group-label"
                 defaultValue="female"
                 name="radio-buttons-group"
+                value={pollResult}
+                onChange={(e) => setPollResult(e.target.value as PollValue)}
             >
                 {pollOptions.map((option, index) => (
                     <FormControlLabel key={index} value={option.value} control={<Radio />} label={option.label} />
                 ))}
             </RadioGroup>
-            <Button variant="contained" sx={{ mt: 2 }} onClick={() => setOpen(false)}>
+            <Button variant="contained" sx={{ mt: 2 }} onClick={() =>  {
+                setNewTopicModal(false);
+                setChatStart(null);
+            }}>
                 Let's go!
             </Button>
         </Box>
