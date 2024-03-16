@@ -130,6 +130,111 @@ const CookSubCategories = {
     ItalianCuisine: 5,
 };
 
+
+
+const MusicSubQuestions = {
+    Pop: "What are some popular pop songs of the last decade?",
+    Rap: "Who is considered one of the greatest rappers of all time?",
+    Rock: "What are the origins of rock and roll music?",
+    Jazz: "Who is known as the King of Jazz?",
+    Classical: "What are some famous composers of classical music?"
+};
+
+const SportSubQuestions = {
+    Football: "Who won the last FIFA World Cup?",
+    Basketball: "What NBA team has the most championships?",
+    Tennis: "Who holds the record for the most Grand Slam titles in men's tennis?",
+    Golf: "What is the nickname of golfer Tiger Woods?",
+    Swimming: "Who is considered one of the greatest Olympic swimmers of all time?"
+};
+
+const CinemaSubQuestions = {
+    Action: "What are some classic action movies?",
+    Comedy: "Who is known as the 'King of Comedy' in Hollywood?",
+    Drama: "What are some iconic drama films that have won Oscars?",
+    SciFi: "What are some popular sci-fi TV series?",
+    Horror: "Who is considered the 'Master of Horror' in filmmaking?"
+};
+
+
+const BooksSubQuestions = {
+    Fiction: "What are some must-read classic fiction novels?",
+    NonFiction: "What are some popular non-fiction books on self-improvement?",
+    Mystery: "Who is the author of the famous detective character Sherlock Holmes?",
+    Thriller: "What are some famous thriller novels turned into successful movies?",
+    Romance: "What are some timeless romance novels?"
+};
+
+const BusinessSubQuestions = {
+    Finance: "What are some key concepts in personal finance?",
+    Marketing: "Who is considered the father of modern marketing?",
+    Entrepreneurship: "What are some successful startup stories?",
+    Management: "What are the qualities of effective management?",
+    Economics: "What are the different types of economic systems?"
+};
+
+
+const ArtsSubQuestions = {
+    Painting: "Who is known for painting the Mona Lisa?",
+    Sculpture: "What are some famous sculptures around the world?",
+    Drawing: "What are some essential drawing techniques?",
+    Photography: "Who is considered a pioneer in photography?",
+    Architecture: "What are some iconic architectural landmarks?"
+};
+
+const HistorySubQuestions = {
+    AncientHistory: "What are some ancient civilizations and their achievements?",
+    MedievalHistory: "What are some key events in medieval Europe?",
+    ModernHistory: "What are the major events of the 20th century?",
+    WorldHistory: "What are some significant world-changing events?",
+    USHistory: "What are some important moments in American history?"
+};
+
+
+const ScienceSubQuestions = {
+    Physics: "What are the fundamental laws of physics?",
+    Chemistry: "What are some common chemical reactions?",
+    Biology: "What are the main branches of biology?",
+    Astronomy: "What are some interesting facts about the planets in our solar system?",
+    Psychology: "What are some famous psychological experiments?"
+};
+
+
+const TechnologySubQuestions = {
+    Programming: "What are some popular programming languages?",
+    WebDevelopment: "What are some essential tools for web developers?",
+    MobileDevelopment: "What are some top mobile app development frameworks?",
+    ArtificialIntelligence: "What are some applications of AI in everyday life?",
+    Blockchain: "How does blockchain technology work and what are its advantages?"
+};
+
+const PoliticsSubQuestions = {
+    Government: "What are the different types of government systems?",
+    InternationalRelations: "What are some key international organizations?",
+    PoliticalTheory: "Who are some influential political philosophers?",
+    PublicPolicy: "What are some examples of successful public policies?",
+    Elections: "What are some notable election controversies in history?"
+};
+
+const TravelSubQuestions = {
+    AdventureTravel: "What are some thrilling adventure travel destinations?",
+    BudgetTravel: "How can one travel on a budget?",
+    FamilyTravel: "What are some family-friendly vacation spots?",
+    SoloTravel: "What are the benefits of solo travel?",
+    LuxuryTravel: "What are some luxurious travel experiences?"
+};
+
+
+const CookingSubQuestions = {
+    Recipes: "What are some easy and delicious recipes for beginners?",
+    Baking: "What are some classic baking recipes?",
+    HealthyEating: "What are some tips for maintaining a healthy diet?",
+    Vegetarian: "What are some tasty vegetarian dishes?",
+    Vegan: "What are some popular vegan substitutes for common ingredients?"
+};
+
+
+
 // Functions
 // 1.
 function createNumberWithBitsAtIndex(indexes) {
@@ -252,35 +357,6 @@ function getSubcategories(categoryIndex) {
     }
 }
 
-/*
-function chosenChatTheme(arrayReturn) {
-    let categorySubcategoryElement =  getRandomElement(arrayReturn);
-    let categoryIndex = Number(Object.keys(categorySubcategoryElement));
-    let subcategories = Object.values(categorySubcategoryElement);
-
-    let randomCategoryIndex = getRandomOneCategory(subcategories);
-
-    let categoryName = Object.keys(Categories).find(key => Categories[key] === categoryIndex);
-    let subcategoryName = Object.keys(getSubcategories(categoryIndex)).find(key => getSubcategories(categoryIndex)[key] === randomCategoryIndex);
-
-    let matchedObj={};
-    matchedObj[categoryName] = subcategoryName;
-                  
-    return matchedObj;
-}
-chosenChatTheme(simularCategories(Profiles[0],Profiles));
-
-function chooseChatArray(arrayReturn) {
-     let arrThemes = [];
-     arrayReturn.forEach(element => {
-          arrThemes.keys() = element.key();
-          
-     });
-
-     return arrThemes;
-}
-*/
-
 //Get array with chosen similar themes
 function getIndexesSubcategories(subIndex){
     let positions = [];
@@ -336,7 +412,11 @@ function pickRandomTheme(arrayThemes){
     console.log(arrayThemes);
 
     return result;
-}s
+}
+
+
+
+
 
 // Call functions
 setProfile([{1: [2, 5]}, {0: [3, 4]}, {2: [1, 6]}]);
