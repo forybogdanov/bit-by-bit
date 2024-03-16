@@ -12,9 +12,10 @@
     flex-direction: column;
     align-items: center;
     padding: 5vw;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.6);
     border: 2px solid rgba(145, 145, 145, 0.5);
     border-radius: 50px;
+    z-index: 100;
 }
 
 .login .circleFirst {
@@ -37,22 +38,22 @@
 
 .login .welcome {
     color: #17243D;
-    font-size: 32px;
+    font-size: 36px;
     font-style: normal;
-    font-weight: 800;
     line-height: normal;
     margin-bottom: 12px;
+    font-family: GilroyExtraBold, sans-serif;
 }
 
 .login .platformName {
     color: #C0ACD7;
     font-weight: 900;
-    font-size: 36px;
+    font-size: 40px;
 }
 
 .login .subwelcome {
     color: #626989;
-    font-size: 16px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -66,7 +67,7 @@
 
 .login .textFieldLabel {
     color: #17243D;
-    font-size: 16px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -88,7 +89,7 @@
     border-radius: 8px;
     border: 1px solid #DBE1EA;
     color: #22252f;
-    font-size: 16px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -101,8 +102,7 @@
     width: 300px;
     text-transform: none;
     color: #FFF;
-    height: 40px;
-    font-weight: 600;
+    height: 44px;
     padding: 0 24px 0 16px;
     justify-content: center;
     align-items: center;
@@ -110,6 +110,8 @@
     border-radius: 8px;
     border: 1px solid #DBE1EA;
     background: #17243D;
+    font-family: GilroyExtraBold, sans-serif;
+    font-size: 18px;
 }
 
 .login .signInButton:hover {
@@ -119,21 +121,22 @@
 .login .noAccountText {
     margin: 16px 0;
     text-align: center;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .login .signUpButton {
     display: flex;
     width: 300px;
-    font-weight: 600;
     text-transform: none;
     color: #17243D;
-    height: 40px;
+    height: 44px;
     padding: 0 24px 0 16px;
     justify-content: center;
     align-items: center;
     gap: 10px;
     border-radius: 8px;
     border: 1px solid #DBE1EA;
+    font-family: GilroyExtraBold, sans-serif;
+    font-size: 18px;
 }
 

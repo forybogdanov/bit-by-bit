@@ -43,9 +43,9 @@ export default function SignIn() {
                     </Grid>
                 </Grid>
                 <Grid marginTop={'100px'}>
-                    <Button className={'signInButton'}>Sign In</Button>
+                    <Button className={'signInButton'} href={'/dashboard'}>Sign In</Button>
                     <Typography className={'noAccountText'}>Don{'\''}t have an account?</Typography>
-                    <Button className={'signUpButton'}>Sign Up</Button>
+                    <Button className={'signUpButton'} href={'/register'}>Sign Up</Button>
                 </Grid>
             </Grid>
             <CircleFirst/>
