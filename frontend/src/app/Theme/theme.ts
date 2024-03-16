@@ -9,6 +9,6 @@ export const red = "#9c0d38";
 
 export const theme = createTheme({
     typography: {
-        fontFamily: 'Verdana, sans-serif',
+        fontFamily: 'Gilroy, sans-serif',
     },
-  });
+});

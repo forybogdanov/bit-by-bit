@@ -7,34 +7,45 @@
     width: 40px;
     height: 40px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .buttonPrimary {
     color: #FFF;
     text-transform: none;
-    font-size: 14px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
     border-radius: 8px;
-    background: #6FC2B6;
+    background: #C0ACD7;
     width: 176px;
-    height: 40px;
+    height: 44px;
+    font-family: GilroyExtraBold, sans-serif;
 }
 
 .buttonPrimary:hover {
-    background: #55948f;
+    background: #a38db0;
 }
 
 .buttonSecondary {
     color: #0D152E;
     text-transform: none;
-    font-size: 14px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
     background: none;
     border: none;
     width: 176px;
-    height: 40px;
+    height: 44px;
+    font-family: GilroyExtraBold, sans-serif;
+}
+
+.projectName {
+    color: #0D152E;
+    font-family: GilroyExtraBold, sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    cursor: pointer;
 }

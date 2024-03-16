@@ -7,20 +7,21 @@
     text-align: center;
     font-size: 48px;
     font-style: normal;
-    font-weight: 700;
+    font-family: GilroyExtraBold, sans-serif;
     line-height: 44px;
 }
 
 .firstSection .titleSpan {
-    color: #6FC2B6;
+    color: #C0ACD7;
+    font-family: GilroyExtraBold, sans-serif;
 }
 
 .firstSection .subTitle {
-    color: #626989;
+    color: #0D152E;
     text-align: center;
-    font-size: 18px;
+    font-size: 20px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 28px;
 }
 
