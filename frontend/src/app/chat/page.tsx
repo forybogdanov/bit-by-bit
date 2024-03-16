@@ -241,26 +241,24 @@ export default function Page() {
   }, [messages]);
 
     useEffect(() => {
-        if (!newTopicModal) {
             const interval = setInterval(() => {
-            if (chatStart) {
+            if (chatStart && !newTopicModal && !openExchangeModal) {
                 const now = new Date();
                 const elapsed = now.getTime() - chatStart?.getTime();
                 const progress = (elapsed / maxTime) * 100;
                 setProgress(progress);
                 if (progress >= 100) {
-                    console.log(questionsCount);
                     if (questionsCount < maxQuestions) {
                         setNewTopicModal(true);
                     } else {
+                        clearInterval(interval);
                         setOpenExchangeModal(true);
                     }
                 }
             }
             }, 100);
             return () => clearInterval(interval);
-        }
-    }, [chatStart, newTopicModal, questionsCount]);
+    }, [chatStart, newTopicModal, questionsCount, openExchangeModal]);
 
   return (
     <Stack sx={{width: "100vw", height: "100vh"}}>
@@ -279,7 +277,7 @@ export default function Page() {
                 <Typography>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 </Typography>
-                {chatStart && (
+                {chatStart && !openExchangeModal && !showContacts && (
                     <LinearProgress variant="determinate" value={progress} />
                 )}
             </Grid>
@@ -362,7 +360,7 @@ export default function Page() {
         </Box>
         </Modal>
         <Modal
-        open={openExchangeModal}>
+        open={openExchangeModal && !showContacts}>
         <Box sx={style}>
             <Typography sx={{ mt: 2 }}>
                Do you want to exchange contact information with this person?
@@ -373,11 +371,8 @@ export default function Page() {
                 </Button>
                 <Button variant="contained" sx={{ mt: 2, backgroundColor: darkBlue }} onClick={() => {
                     setOpenExchangeModal(false);
-                    setLoading(true);
-                    setTimeout(() => {
-                        setLoading(false);
-                        setShowContacts(true);
-                    }, 2000);
+                    setLoading(false);
+                    setShowContacts(true);
                 }}>
                     Of course!
                 </Button>
@@ -407,7 +402,6 @@ export default function Page() {
                     phone: {userProfile2?.phone}
                 </Typography>
                 <Button variant="contained" onClick={() => {
-                    setShowContacts(false);
                     router.push('/dashboard');
                 }}>
                     Save to contacts
