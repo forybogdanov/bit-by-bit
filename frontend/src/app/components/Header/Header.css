@@ -17,13 +17,13 @@
     font-weight: 700;
     line-height: normal;
     border-radius: 8px;
-    background: #6FC2B6;
+    background: #C0ACD7;
     width: 176px;
     height: 40px;
 }
 
 .buttonPrimary:hover {
-    background: #55948f;
+    background: #a38db0;
 }
 
 .buttonSecondary {

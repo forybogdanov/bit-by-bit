@@ -4,15 +4,24 @@ import { Button, Grid, Link, TextField, Typography } from "@mui/material";
 
 export default function SignIn() {
     return (
-        <Grid display={'flex'} height={'100vh'} alignItems={'center'} justifyContent={'center'} flexDirection={'column'}>
-            <Typography marginBottom={4}>LOG IN</Typography>
-            <Grid display={'flex'} flexDirection={'column'} gap={2}>
-                <TextField variant="outlined" placeholder={'Username'}></TextField>
-                <TextField variant="outlined" placeholder={'Password'}></TextField>
+        <Grid display={'flex'} height={'100vh'} alignItems={'center'} justifyContent={'center'} flexDirection={'column'} className={'login'}>
+            <Typography className={'welcome'}>Welcome to <span className={'platformName'}>CREON</span></Typography>
+            <Typography className={'subwelcome'}>Create connections.</Typography>
+            <Grid display={'flex'} flexDirection={'column'} width={'100%'} className={'textFieldsWrapper'}>
+                <Grid>
+                    <Typography className={'textFieldLabel'}>Email Address</Typography>
+                    <TextField variant="outlined" placeholder={'Username'} className={'textField'}/>
+                </Grid>
+                <Grid>
+                    <Typography className={'textFieldLabel'}>Password</Typography>
+                    <TextField variant="outlined" placeholder={'Password'} className={'textField'}/>
+                </Grid>
             </Grid>
-            <Typography marginTop={4}>Don{'\''}t have an account yet? <Link href={'/register'}>Create one here.</Link></Typography>
-            <Button>Sign in</Button>
-            <Link>Terms and conditions</Link>
+            <Grid marginTop={'100px'}>
+                <Button className={'signInButton'}>Sign In</Button>
+                <Typography className={'noAccountText'}>Don{'\''}t have an account?</Typography>
+                <Button className={'signUpButton'}>Sign Up</Button>
+            </Grid>
         </Grid>
     )
 }
