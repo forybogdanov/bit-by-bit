@@ -2,7 +2,7 @@
 import { Button, Grid, IconButton, Input, InputAdornment, Stack, Typography } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 import { Socket, io } from "socket.io-client";
-import { darkBlue, lightBlue, white } from "../Theme/theme";
+import { darkBlue, lightBlue, orange, red, white } from "../Theme/theme";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 
 
@@ -24,7 +24,7 @@ const MessageBox = (props: {message: IMessage, user: number}) => {
         background: props.message.user === props.user ? darkBlue : lightBlue,
         borderRadius: "8px",
         margin: "8px",
-        maxWidth: "50%",
+        maxWidth: "70%",
         border: "1px solid #fsfsfs",
         boxShadow: "0px 4px 3px #5f5f5f",
         padding: "8px 16px"
@@ -38,10 +38,21 @@ const MessageBox = (props: {message: IMessage, user: number}) => {
   )
 }
 
+const defultChat: IMessage[] = [
+    {text: "Hello", user: 1},
+    {text: "Hi", user: 2},
+    {text: "How are you?", user: 1},
+    {text: "I'm fine", user: 2},
+    {text: "What about you?", user: 2},
+    {text: "I'm also fine", user: 1},
+    {text: "Bye", user: 2},
+    {text: "Goodbye", user: 1},
+];
+
 export default function Page() {
-  const [messages, setMessages] = useState<IMessage[]>([]);
+  const [messages, setMessages] = useState<IMessage[]>(defultChat);
   const [message, setMessage] = useState<string>('');
-  const [user, setUser] = useState(0);
+  const [user, setUser] = useState(1);
 
   const getMessage = useCallback(() => {
     socket.on('message', (message: IMessage) => {
@@ -75,27 +86,43 @@ export default function Page() {
 
   return (
     <Stack sx={{width: "100vw", height: "100vh"}}>
-      <Grid container width={"100%"} height={"50px"} sx={{background: darkBlue}}>
-      </Grid>
-      <Stack sx={{
-        padding: "60px 16px 0px 16px",
-        height: "100%",
-        overflowY: "scroll",
-      }}>
-        {messages.map((message, index) => (
-          <MessageBox key={index} user={user} message={message}/>
-        ))}
-      </Stack>
-      <Grid container width={"100%"} sx={{
-        padding: "20px 40px",
-      }}>
+        <Grid container width={"100%"} height={"80px"} sx={{background: darkBlue}}>
+        </Grid>
+        <Grid container justifyContent={"center"}>
+            <Grid sx={{
+                background: lightBlue,
+                maxWidth: "100%",
+                padding: "8px 16px",
+                textAlign: "center",
+            }}>
+                <Typography>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </Typography>
+            </Grid>
+        </Grid>
+        <Stack sx={{
+            padding: "40px 16px 100px 16px",
+            height: "100%",
+            overflowY: "scroll",
+        }}>
+            {messages.map((message, index) => (
+            <MessageBox key={index} user={user} message={message}/>
+            ))}
+        </Stack>
+        <Grid container width={"100%"} sx={{
+            padding: "20px 40px",
+            background: "transparent",
+            position: "fixed",
+            bottom: "0",
+            alignItems: "center",
+        }}>
         <Input
           multiline
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           disableUnderline={true}
           style={{
-            width: "90%",
+            width: "100%",
             borderRadius: "12px",
             border: "1px solid #E7F0F5",
             background: "#FFF",
@@ -106,8 +133,10 @@ export default function Page() {
           endAdornment={
             <InputAdornment position="end">
               <IconButton onClick={ () => {
-                socket.emit("message", {text: message, user}); 
-                setMessage("");
+                if (message !== "") {
+                  socket.emit("message", {text: message, user}); 
+                  setMessage("");
+                }
               }}>
                 <SendRoundedIcon />
               </IconButton>
