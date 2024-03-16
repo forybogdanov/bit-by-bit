@@ -44,11 +44,13 @@
 
 .register .createAccountText {
     color: #17243D;
-    font-size: 32px;
+    font-size: 38px;
     font-style: normal;
     font-weight: 800;
     line-height: normal;
     margin-bottom: 72px;
+    font-family: GilroyExtraBold, sans-serif;
+    text-align: center;
 }
 
 .register .textFieldLabel {
@@ -110,8 +112,30 @@
     margin-top: 60px;
 }
 
-
-
 .css-120jok1-MuiInputBase-root-MuiOutlinedInput-root {
     border-radius: 8px;
+}
+
+@media only screen and (max-width: 1100px) {
+    .register {
+        padding: 15vh 15vw;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .register {
+        padding: 15vh 10vw;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .register .formWrapper {
+        padding: 64px;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .register .formWrapper {
+        padding: 32px;
+    }
 }

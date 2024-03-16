@@ -48,11 +48,11 @@ function CircleSecond() {
 export default function Account() {
     return (
         <Grid className={'account'}>
-            <Grid display={'flex'} justifyContent={'space-between'} marginBottom={'36px'}>
+            <Grid display={'flex'} justifyContent={'space-between'} marginBottom={'36px'} alignItems={'center'}>
                 <Typography className={'title'}>Your account.</Typography>
                 <Grid display={'flex'} gap={4}>
-                    <Button className={'editProfileButton'}>Edit Profile</Button>
-                    <Button className={'signOutButton'} href={'/signin'}>Sign Out</Button>
+                    <Button className={'editProfileButton'}>Edit Profile Info</Button>
+                    <Button className={'signOutButton'} href={'/setup'}>Edit Interests</Button>
                 </Grid>
             </Grid>
             <Grid display={'flex'} flexDirection={'row'} gap={12} marginBottom={'56px'}>
