@@ -154,166 +154,154 @@ const GeographySubCategories = {
 
 const GenericQuestions = {
     Music: [
-        "What are some popular songs in this music genre?",
-        "Who are some iconic artists in this genre?",
-        "What are the characteristics of this genre?"
+        "What are some unpopular songs you're interested in?",
+        "Who are some artists that have made an impact on you?"
     ],
     Sport: [
-        "What are some major sporting events in this category?",
-        "Who are some legendary athletes in this sport?",
-        "What are the rules and regulations of this sport?"
+        "What are some major sporting events that you have attend",
+        "Who are some legendary athletes that have left a lasting impression on you?",
     ],
     Cinema: [
-        "What are some classic movies in this genre?",
-        "Who are some renowned directors in this category?",
-        "What are the common themes explored in this genre?"
+        "What are some classic movies uou like?",
+        "Who are some renowned directors you like?",
     ],
     Books: [
-        "What are some must-read books in this category?",
-        "Who are some acclaimed authors in this genre?",
-        "What are the main themes in these types of books?"
+        "What are some must-read books in your list?",
+        "Who are some acclaimed authors that have made an impact on you?",
     ],
     Business: [
-        "What are some key concepts in this business field?",
-        "Who are some influential figures in this industry?",
-        "What are the current trends and challenges in this sector?"
+        "Who are some influential figures in this industry you admire?",
+        "Who are some influential businessman you wish to meet?"
     ],
     Art: [
-        "What are some famous artworks in this category?",
-        "Who are some celebrated artists known for this art form?",
-        "What are the techniques used in this artistic style?"
+        "What are some famous artworks you admire?",
+        "Who are some celebrated artists you wish to meet?",
     ],
     History: [
-        "What are some significant events in this historical era?",
-        "Who are some notable figures from this period?",
-        "What are the lasting impacts of this historical era?"
+        "Who are some notable figures from this period you wish to meet?",
+        "What are do you believe will be a lasting impact of our historical era?"
     ],
     Science: [
-        "What are some groundbreaking discoveries in this scientific field?",
-        "Who are some prominent scientists in this discipline?",
-        "What are the main theories and principles in this area?"
+        "What are some groundbreaking discoveries you are interested in?",
+        "Who are some prominent scientists you admire?",
     ],
     Technology: [
-        "What are some recent advancements in this tech field?",
-        "Who are some innovators and pioneers in this sector?",
-        "What are the potential future developments in this technology?"
+        "Who are some innovators and pioneers in this sector that you wish to meet?",
+        "What are some potential future developments you wish were real now?"
     ],
     Politics: [
-        "What are some major political movements or ideologies?",
-        "Who are some influential political leaders in this area?",
-        "What are the main challenges facing this political landscape?"
+        "Who are some influential political leaders whose ideas resonate with your beliefs?",
+        "What are some major political movements or ideologies that you align with?"
     ],
     Travel: [
-        "What are some top travel destinations in this category?",
-        "What are some cultural experiences one can have in these places?",
-        "What are some travel tips for exploring this region?"
+        "What are some top travel destinations in your bucket list?",
+        "What are some cultural experiences that have shocked you?",
     ],
     Cooking: [
-        "What are some classic recipes in this culinary style?",
-        "Who are some renowned chefs known for this type of cuisine?",
-        "What are the key ingredients and techniques in this cooking tradition?"
+        "What are some classic recipes you can make?",
+        "Who are some renowned chefs you wish to meet?",
     ]
 };
 
 const MusicSubQuestions = {
-    Pop: "What are some popular pop songs of the last decade?",
-    Rap: "Who is considered one of the greatest rappers of all time?",
-    Rock: "What are the origins of rock and roll music?",
-    Jazz: "Who is known as the King of Jazz?",
-    Classical: "What are some famous composers of classical music?"
+    Pop: "What's a pop song that always gets you dancing?",
+    Rap: "Who's an upcoming rapper you think is going to make it big?",
+    Rock: "What's a rock band you'd love to see live in concert?",
+    Jazz: "Do you have a favorite jazz musician that you always listen to?",
+    Classical: "If you could attend a classical music concert, which composer's work would you want to hear?"
 };
 
 const SportSubQuestions = {
-    Football: "Who won the last FIFA World Cup?",
-    Basketball: "What NBA team has the most championships?",
-    Tennis: "Who holds the record for the most Grand Slam titles in men's tennis?",
-    Golf: "What is the nickname of golfer Tiger Woods?",
-    Swimming: "Who is considered one of the greatest Olympic swimmers of all time?"
+    Football: "What team do you think will win the next World Cup?",
+Basketball: "Who's your all-time favorite NBA player and why?",
+Tennis: "Have you ever tried playing tennis? What do you like about it?",
+Golf: "Do you follow any golf tournaments? Who's your favorite golfer?",
+Swimming: "Have you ever competed in a swimming race? What was it like?"
 };
 
 const CinemaSubQuestions = {
-    Action: "What are some classic action movies?",
-    Comedy: "Who is known as the 'King of Comedy' in Hollywood?",
-    Drama: "What are some iconic drama films that have won Oscars?",
-    SciFi: "What are some popular sci-fi TV series?",
-    Horror: "Who is considered the 'Master of Horror' in filmmaking?"
+    Action: "What's your go-to action movie for a movie night?",
+Comedy: "Who's a comedian that always makes you laugh?",
+Drama: "Do you prefer classic dramas or modern ones?",
+SciFi: "If you could be in a sci-fi movie, what kind of character would you play?",
+Horror: "Have you watched any horror movies that kept you up at night?"
 };
 
 
 const BooksSubQuestions = {
-    Fiction: "What are some must-read classic fiction novels?",
-    NonFiction: "What are some popular non-fiction books on self-improvement?",
-    Mystery: "Who is the author of the famous detective character Sherlock Holmes?",
-    Thriller: "What are some famous thriller novels turned into successful movies?",
-    Romance: "What are some timeless romance novels?"
+    Fiction: "What's a fiction book that you could read over and over again?",
+NonFiction: "Do you have a favorite self-improvement book that inspired you?",
+Mystery: "Who's your favorite detective character from a mystery novel?",
+Thriller: "Have you ever been on the edge of your seat reading a thriller?",
+Romance: "What's a classic romance novel that you think everyone should read?"
 };
 
 const BusinessSubQuestions = {
-    Finance: "What are some key concepts in personal finance?",
-    Marketing: "Who is considered the father of modern marketing?",
-    Entrepreneurship: "What are some successful startup stories?",
-    Management: "What are the qualities of effective management?",
-    Economics: "What are the different types of economic systems?"
+    Finance: "What's a financial tip that changed the way you manage money?",
+    Marketing: "Who's a marketer that you think has mastered the art of persuasion?",
+    Entrepreneurship: "If you could start any business, what would it be and why?",
+    Management: "What's the best leadership advice you've ever received?",
+    Economics: "How do you think different economic systems impact society?"
 };
 
 
 const ArtsSubQuestions = {
-    Painting: "Who is known for painting the Mona Lisa?",
-    Sculpture: "What are some famous sculptures around the world?",
-    Drawing: "What are some essential drawing techniques?",
-    Photography: "Who is considered a pioneer in photography?",
-    Architecture: "What are some iconic architectural landmarks?"
+    Painting: "Do you have a favorite painting that speaks to you?",
+Sculpture: "Have you ever tried sculpting? What kind of sculpture would you create?",
+Drawing: "What's the hardest thing about drawing for you?",
+Photography: "What's the most beautiful photo you've ever taken?",
+Architecture: "What's an architectural style that you find fascinating?"
 };
 
 const HistorySubQuestions = {
-    AncientHistory: "What are some ancient civilizations and their achievements?",
-    MedievalHistory: "What are some key events in medieval Europe?",
-    ModernHistory: "What are the major events of the 20th century?",
-    WorldHistory: "What are some significant world-changing events?",
-    USHistory: "What are some important moments in American history?"
+    AncientHistory: "Which ancient civilization do you find most intriguing?",
+    MedievalHistory: "If you could live in any historical period, which would it be?",
+    ModernHistory: "What's a major historical event you wish you could have witnessed?",
+    WorldHistory: "Which historical figure do you admire the most?",
+    USHistory: "What's a lesser-known fact about US history that fascinates you?"
 };
 
 
 const ScienceSubQuestions = {
-    Physics: "What are the fundamental laws of physics?",
-    Chemistry: "What are some common chemical reactions?",
-    Biology: "What are the main branches of biology?",
-    Astronomy: "What are some interesting facts about the planets in our solar system?",
-    Psychology: "What are some famous psychological experiments?"
+    Physics: "What's a mind-blowing fact about physics that you find fascinating?",
+Chemistry: "Do you have a favorite chemical element? Why?",
+Biology: "What's a biological process that you find amazing?",
+Astronomy: "Have you ever stargazed? What's your favorite celestial object?",
+Psychology: "What's a psychological phenomenon that you find intriguing?"
 };
 
 
 const TechnologySubQuestions = {
-    Programming: "What are some popular programming languages?",
-    WebDevelopment: "What are some essential tools for web developers?",
-    MobileDevelopment: "What are some top mobile app development frameworks?",
-    ArtificialIntelligence: "What are some applications of AI in everyday life?",
-    Blockchain: "How does blockchain technology work and what are its advantages?"
+    Programming: "What programming language do you find most versatile?",
+WebDevelopment: "Do you have a favorite website design that you find impressive?",
+MobileDevelopment: "What's a mobile app that you can't live without?",
+ArtificialIntelligence: "How do you think AI will impact our daily lives in the future?",
+Blockchain: "What's an interesting use case for blockchain technology?"
 };
 
 const PoliticsSubQuestions = {
-    Government: "What are the different types of government systems?",
-    InternationalRelations: "What are some key international organizations?",
-    PoliticalTheory: "Who are some influential political philosophers?",
-    PublicPolicy: "What are some examples of successful public policies?",
-    Elections: "What are some notable election controversies in history?"
+    Government: "What's a government system from history that you find interesting?",
+    InternationalRelations: "Do you follow international politics? What's a recent event that caught your attention?",
+    PoliticalTheory: "Who's a political philosopher that has influenced your views?",
+    PublicPolicy: "What's a public policy issue that you're passionate about?",
+    Elections: "Have you ever volunteered during an election? What was the experience like?"
 };
 
 const TravelSubQuestions = {
-    AdventureTravel: "What are some thrilling adventure travel destinations?",
-    BudgetTravel: "How can one travel on a budget?",
-    FamilyTravel: "What are some family-friendly vacation spots?",
-    SoloTravel: "What are the benefits of solo travel?",
-    LuxuryTravel: "What are some luxurious travel experiences?"
+    AdventureTravel: "What's the most adventurous trip you've ever been on?",
+BudgetTravel: "Do you have any tips for traveling on a budget?",
+FamilyTravel: "What's a memorable family vacation you've been on?",
+SoloTravel: "Have you ever traveled solo? What did you learn from the experience?",
+LuxuryTravel: "If money was no object, where would you go for a luxurious vacation?"
 };
 
 
 const CookingSubQuestions = {
-    Recipes: "What are some easy and delicious recipes for beginners?",
-    Baking: "What are some classic baking recipes?",
-    HealthyEating: "What are some tips for maintaining a healthy diet?",
-    Vegetarian: "What are some tasty vegetarian dishes?",
-    Vegan: "What are some popular vegan substitutes for common ingredients?"
+    Recipes: "What's a recipe that never fails to impress your guests?",
+Baking: "Do you have a favorite baked good that you love to make?",
+HealthyEating: "What's a healthy meal that you enjoy preparing?",
+Vegetarian: "Have you ever tried a vegetarian dish that surprised you with how tasty it was?",
+Vegan: "What's a popular vegan dish that you think everyone should try?"
 };
 
 const ReligionSubQuestions = {
