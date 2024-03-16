@@ -409,17 +409,6 @@ function simularCategories(yourProfile, profilesArr) {
 }
 
 // 3.
-/*
-function getRandomElement(arr) {
-    if (arr.length === 0) {  
-        return undefined; // Handle empty array case
-    }
-  
-    const randomIndex = Math.floor(Math.random() * arr.length);
-
-    return arr[randomIndex];
-}
-*/
 function getRandomOneCategory(n) {
     const onesCount = countOneBits(n);
 
@@ -510,14 +499,10 @@ function pickRandomTheme(arrayThemes){
   
     const randomIndex = Math.floor(Math.random() * arrayThemes.length);
     let result = arrayThemes.splice(randomIndex, 1);
-    console.log(result);
-    console.log(arrayThemes);
-
     return result;
 }
 function getSubQuestions(category  ,subCategory) {
     let questionsArr = [];
-    console.log(category)
     switch (category) {
         case 'Music':
             questionsArr = MusicSubQuestions[subCategory];
@@ -585,7 +570,6 @@ function addSubQuestions(arrayToReturn, category, subcategory) {
 function getGenericQuestions(category) {
     switch (category) {
         case 'Music':
-            console.log(GenericQuestions.Music)
             return GenericQuestions.Music;
         case 'Sport':
             return GenericQuestions.Sport;
@@ -643,13 +627,20 @@ function getArrayWithQuestions(arrayThemes) {
              addSubQuestions(arrayQuestionsToReturn, category, subCategory);
         }
     });
+
+    // Reverse the order of questions in each category
+    arrayQuestionsToReturn.forEach(category => {
+        let reversedQuestions = category[Object.keys(category)[0]].reverse();
+        category[Object.keys(category)[0]] = reversedQuestions;
+    });
+
     return arrayQuestionsToReturn;
 }
 
 // Call functions
 setProfile([{1: [2, 5]}, {0: [3, 4]}, {2: [1, 6]}]);
 setProfile([{2: [1, 6]}, {1: [3, 4]}, {3: [2, 5]}]);
-console.log(Profiles); // Optionally, log the Profiles array to see all profiles
+// Optionally, log the Profiles array to see all profiles
 //simularCategories(Profiles[0], Profiles);
 //chosenChatThemeArray(simularCategories(Profiles[0], Profiles));
 //pickRandomTheme(chosenChatThemeArray(simularCategories(Profiles[0], Profiles)));
@@ -657,5 +648,5 @@ console.log(Profiles); // Optionally, log the Profiles array to see all profiles
 
 let theme = simularCategories(Profiles[0], Profiles);
 let chosenTheme = chosenChatThemeArray(theme)
-let questions = getArrayWithQuestions(chosenTheme);
+export const questions = getArrayWithQuestions(chosenTheme);
 getArrayWithQuestions(chosenTheme);
