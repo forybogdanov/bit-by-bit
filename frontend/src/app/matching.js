@@ -628,13 +628,19 @@ function getArrayWithQuestions(arrayThemes) {
         }
     });
 
+    // Reverse the order of questions in each category
+    arrayQuestionsToReturn.forEach(category => {
+        let reversedQuestions = category[Object.keys(category)[0]].reverse();
+        category[Object.keys(category)[0]] = reversedQuestions;
+    });
+
     return arrayQuestionsToReturn;
 }
 
 // Call functions
 setProfile([{1: [2, 5]}, {0: [3, 4]}, {2: [1, 6]}]);
 setProfile([{2: [1, 6]}, {1: [3, 4]}, {3: [2, 5]}]);
- // Optionally, log the Profiles array to see all profiles
+// Optionally, log the Profiles array to see all profiles
 //simularCategories(Profiles[0], Profiles);
 //chosenChatThemeArray(simularCategories(Profiles[0], Profiles));
 //pickRandomTheme(chosenChatThemeArray(simularCategories(Profiles[0], Profiles)));
@@ -643,3 +649,4 @@ setProfile([{2: [1, 6]}, {1: [3, 4]}, {3: [2, 5]}]);
 let theme = simularCategories(Profiles[0], Profiles);
 let chosenTheme = chosenChatThemeArray(theme)
 export const questions = getArrayWithQuestions(chosenTheme);
+getArrayWithQuestions(chosenTheme);
