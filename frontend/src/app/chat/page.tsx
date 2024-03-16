@@ -1,10 +1,11 @@
 'use client'
-import { Box, Button, FormControlLabel, Grid, IconButton, Input, InputAdornment, LinearProgress, Modal, Radio, RadioGroup, Stack, Typography } from "@mui/material";
+import { Box, Button, CircularProgress, FormControlLabel, Grid, IconButton, Input, InputAdornment, LinearProgress, Modal, Radio, RadioGroup, Stack, Typography } from "@mui/material";
 import { useCallback, useDebugValue, useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { darkBlue, lightBlue, orange, red, white } from "../Theme/theme";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import { questions } from "../matching";
+import { useRouter } from "next/navigation";
 
 const BASE_URL = "http://localhost:4000";
 const socket = io(BASE_URL, {
@@ -33,6 +34,13 @@ const style = {
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
+}
+
+const progressStyle = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
 }
 
 enum PollValue {
@@ -137,6 +145,15 @@ const defultChat: IMessage[] = [
 const maxTime = 5 * 1000;
 const maxQuestions = 2;
 
+interface UserProfile {
+    username: string;
+    instagram: string;
+    facebook: string;
+    snapchat: string;
+    phone: string;
+
+}
+
 export default function Page() {
   const [messages, setMessages] = useState<IMessage[]>(defultChat);
   const [message, setMessage] = useState<string>('');
@@ -148,8 +165,12 @@ export default function Page() {
   const [topic, setTopic] = useState(defaultTopic);
   const [question, setQuestion] = useState(defaultQuestion);
   const [questionsCount, setQuestionsCount] = useState(0);
-  const [openExchangeModal, setOpenExchangeModal] = useState(true);
-  const [userProfile, setUserProfile] = useState<{username: string, instagram: string}>({username: "", instagram: ""});
+  const [openExchangeModal, setOpenExchangeModal] = useState(false);
+  const [userProfile, setUserProfile] = useState<UserProfile>();
+  const [showContacts, setShowContacts] = useState(false);
+  const [userProfile2, setUserProfile2] = useState<UserProfile>();
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const getMessage = useCallback(() => {
     socket.on('message', (message: IMessage) => {
@@ -180,26 +201,13 @@ export default function Page() {
 
   useEffect(() => {
     getUser();
-    // uncomment this to set user profile
-    // const profile = {
-    //     username: "fory",
-    //     instagram: "nikiforbogdanov",
-    //     facebook: "Nikifor Bogdanov",
-    //     snapchat: "fory04",
-    //     phone: "1234567890",
-    // };
-    // const profile = {
-    //     username: "rami04",
-    //     instagram: "ramihennawi",
-    //     facebook: "Rami Hennawi",
-    //     snapchat: "ouplex",
-    //     phone: "1234567890",
-
-    // };
-    // localStorage.setItem("userProfile2", JSON.stringify(profile));
     const userProfileFromLocalStorage = localStorage.getItem("userProfile");
     if (userProfileFromLocalStorage) {
       setUserProfile(JSON.parse(userProfileFromLocalStorage));
+    }
+    const userProfileFromLocalStorage2 = localStorage.getItem("userProfile2");
+    if (userProfileFromLocalStorage2) {
+      setUserProfile2(JSON.parse(userProfileFromLocalStorage2));
     }
   }, [user, getUser]);
 
@@ -329,7 +337,7 @@ export default function Page() {
             <Typography id="modal-modal-title" variant="h6" component="h2">
             Poll
             </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            <Typography sx={{ mt: 2 }}>
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
             </Typography>
             <RadioGroup
@@ -356,18 +364,61 @@ export default function Page() {
         <Modal
         open={openExchangeModal}>
         <Box sx={style}>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            <Typography sx={{ mt: 2 }}>
                Do you want to exchange contact information with this person?
             </Typography>
             <Grid container gap="20px">
                 <Button variant="contained" sx={{ mt: 2, backgroundColor: red }}>
                     No, thanks!
                 </Button>
-                <Button variant="contained" sx={{ mt: 2, backgroundColor: darkBlue }}>
+                <Button variant="contained" sx={{ mt: 2, backgroundColor: darkBlue }} onClick={() => {
+                    setOpenExchangeModal(false);
+                    setLoading(true);
+                    setTimeout(() => {
+                        setLoading(false);
+                        setShowContacts(true);
+                    }, 2000);
+                }}>
                     Of course!
                 </Button>
             </Grid>
         </Box>
+        </Modal>
+        <Modal
+        open={showContacts}>
+        <Box sx={style}>
+            <Typography sx={{ mt: 2 }}>
+                Here are the contact details of the person you just chatted with!
+            </Typography>
+            <Stack gap="20px">
+                <Typography>
+                    username: {userProfile2?.username}
+                </Typography>
+                <Typography>
+                    instagram: {userProfile2?.instagram}
+                </Typography>
+                <Typography>
+                    facebook: {userProfile2?.facebook}
+                </Typography>
+                <Typography>
+                    snapchat: {userProfile2?.snapchat}
+                </Typography>
+                <Typography>
+                    phone: {userProfile2?.phone}
+                </Typography>
+                <Button variant="contained" onClick={() => {
+                    setShowContacts(false);
+                    router.push('/dashboard');
+                }}>
+                    Save to contacts
+                </Button>
+            </Stack>
+        </Box>
+        </Modal>
+        <Modal open={loading}>
+            <Grid sx={progressStyle}>
+                <CircularProgress />
+            </Grid>
         </Modal>
     </Stack>
   )
