@@ -129,7 +129,6 @@ const CookSubCategories = {
     ItalianCuisine: 5,
 };
 
-//.addEventListener("click",function(){ })
 
 function createNumberWithBitAtIndex(indexes) {
      let number = 0;
@@ -152,9 +151,6 @@ function setProfile(arrayCategories) {
        // Use assignment to add key-value pair to the person object
        person[category] = number;
      }
-   
-     // Log the constructed person object
-     console.log(person);
      
      // Add the constructed person object to the Profiles array
      Profiles.push(person);
@@ -163,7 +159,7 @@ function setProfile(arrayCategories) {
     setProfile([{1: [2, 5]}, {0: [3, 4]}, {2: [1, 6]}]);
     setProfile([{2: [1, 6]}, {1: [3, 4]}, {3: [2, 5]}]);
    
-    console.log(Profiles); // Optionally, log the Profiles array to see all profiles
+    //console.log(Profiles); // Optionally, log the Profiles array to see all profiles
 
 function countOneBits(returnValue) {
      let count = 0;
@@ -251,7 +247,7 @@ function getSubcategories(categoryIndex) {
               return {};
      }
 }
-
+/*
 function chosenChatTheme(arrayReturn) {
     let categorySubcategoryElement =  getRandomElement(arrayReturn);
     let categoryIndex = Number(Object.keys(categorySubcategoryElement));
@@ -278,3 +274,66 @@ function chooseChatArray(arrayReturn) {
 
      return arrThemes;
 }
+
+*/
+
+//Get array with chosen similar themes
+function getIndexesSubcategories(subIndex){
+    
+    let positions = [];
+    let position = 0;
+      
+    while (subIndex > 0) {
+        if (subIndex & 1) {
+        positions.push(position);
+        }
+
+        subIndex >>= 1; // Shift number to the right by 1 bit
+        position++;
+    }
+      
+    return positions;   
+}
+
+function fillArrayThemes(arrayThemes,categoryIndex,subIndex){
+    let categoryName = Object.keys(Categories).find(key => Categories[key] === categoryIndex);
+    let indexesPosition = getIndexesSubcategories(subIndex);
+    
+    for (let index = 0; index < indexesPosition.length; index++) {
+        let themeObject={};
+        themeObject[categoryName]= Object.keys(getSubcategories(categoryIndex)).find(key=> getSubcategories(categoryIndex)[key] === indexesPosition[index]);
+        arrayThemes.push(themeObject);
+    }
+
+    return arrayThemes;
+}
+
+function chosenChatThemeArray(arrayReturn){
+    let arrayThemes = [];
+
+    arrayReturn.forEach(element => {
+
+        let categoryIndex =Number(Object.keys(element));
+        let subIndex = Number(Object.values(element));
+        fillArrayThemes(arrayThemes,categoryIndex,subIndex);
+    });
+    return arrayThemes;
+}
+
+//choose a random themes
+function pickRandomTheme(arrayThemes){
+    if (arrayThemes.length === 0) return undefined; // Handle empty array case
+  
+    const randomIndex = Math.floor(Math.random() * arrayThemes.length);
+    let result = arrayThemes.splice(randomIndex, 1);
+    console.log(result)
+    console.log(arrayThemes)
+    return result;
+}
+
+
+
+
+chosenChatThemeArray(simularCategories(Profiles[0],Profiles))
+pickRandomTheme(chosenChatThemeArray(simularCategories(Profiles[0],Profiles)))
+//chosenChatTheme(simularCategories(Profiles[0],Profiles))
