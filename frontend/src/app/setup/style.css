@@ -7,16 +7,74 @@
 }
 
 .categoryCard {
-    width: calc((100vw - 2*80px - 3*36px) / 4);
-    height: calc((100vw - 2*80px - 3*36px) / 4);
-    position: relative;
-    
+    width: calc((100% - 3*36px) / 4);
+    height: 100px;
+    display: flex;
+    border-radius: 28px;
+    align-items: center;
+    padding: 12px 24px;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.categoryCardSelected {
+    width: calc((100% - 3*36px) / 4);
+    height: 100px;
+    display: flex;
+    border-radius: 28px;
+    align-items: center;
+    padding: 12px 24px;
+    justify-content: space-between;
+    cursor: pointer;
+    box-shadow: 2px 4px 12px 0px rgba(0, 0, 0, 0.05);
+    border: 2px solid #000;
 }
 
 .categoryCardText {
-    position: absolute;
+    font-size: 32px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    font-weight: 800;
 }
 
 .categoryCardIcon {
-    font-size: 20em;
+    color: rgba(255, 255, 255, 0.5);
+    width: 86px;
+    height: 86px;
+    margin-left: -100px;
+}
+
+.subCategoryOption {
+    padding: 8px 16px;
+    color: #0D152E;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.subCategoryOptionSelected {
+    padding: 8px 16px;
+    color: #0D152E;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid #000;
+}
+
+@media only screen and (max-width: 1600px) {
+    .categoryCard {
+        width: calc((100% - 2*36px) / 3);
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .categoryCard {
+        width: calc((100% - 36px) / 2);
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .categoryCard {
+        width: 100%;
+    }
 }
