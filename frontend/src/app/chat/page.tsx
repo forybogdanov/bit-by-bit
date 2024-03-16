@@ -135,6 +135,7 @@ const defultChat: IMessage[] = [
 ];
 
 const maxTime = 5 * 1000;
+const maxQuestions = 2;
 
 export default function Page() {
   const [messages, setMessages] = useState<IMessage[]>(defultChat);
@@ -146,6 +147,9 @@ export default function Page() {
   const [vote, setVote] = useState<PollValue | null>(null);
   const [topic, setTopic] = useState(defaultTopic);
   const [question, setQuestion] = useState(defaultQuestion);
+  const [questionsCount, setQuestionsCount] = useState(0);
+  const [openExchangeModal, setOpenExchangeModal] = useState(true);
+  const [userProfile, setUserProfile] = useState<{username: string, instagram: string}>({username: "", instagram: ""});
 
   const getMessage = useCallback(() => {
     socket.on('message', (message: IMessage) => {
@@ -176,10 +180,32 @@ export default function Page() {
 
   useEffect(() => {
     getUser();
+    // uncomment this to set user profile
+    // const profile = {
+    //     username: "fory",
+    //     instagram: "nikiforbogdanov",
+    //     facebook: "Nikifor Bogdanov",
+    //     snapchat: "fory04",
+    //     phone: "1234567890",
+    // };
+    // const profile = {
+    //     username: "rami04",
+    //     instagram: "ramihennawi",
+    //     facebook: "Rami Hennawi",
+    //     snapchat: "ouplex",
+    //     phone: "1234567890",
+
+    // };
+    // localStorage.setItem("userProfile2", JSON.stringify(profile));
+    const userProfileFromLocalStorage = localStorage.getItem("userProfile");
+    if (userProfileFromLocalStorage) {
+      setUserProfile(JSON.parse(userProfileFromLocalStorage));
+    }
   }, [user, getUser]);
 
   const handlePollResult = useCallback(() => {
-    socket.on('pollResults', (result: any) => {
+    socket.on('pollResults', ({result, questionsCount }: any) => {
+        setQuestionsCount(questionsCount);
         if (result === PollValue.CHANGE_TOPIC) {
             const newTopicMessage: IMessage  = {
                 text: getQuestionString(questions, topic+1, 0),
@@ -215,17 +241,25 @@ export default function Page() {
                 const progress = (elapsed / maxTime) * 100;
                 setProgress(progress);
                 if (progress >= 100) {
-                    setNewTopicModal(true);
+                    console.log(questionsCount);
+                    if (questionsCount < maxQuestions) {
+                        setNewTopicModal(true);
+                    } else {
+                        setOpenExchangeModal(true);
+                    }
                 }
             }
             }, 100);
             return () => clearInterval(interval);
         }
-    }, [chatStart, newTopicModal]);
+    }, [chatStart, newTopicModal, questionsCount]);
 
   return (
     <Stack sx={{width: "100vw", height: "100vh"}}>
         <Grid container width={"100%"} height={"80px"} sx={{background: darkBlue}}>
+            <Typography sx={{color: white}}>
+                {userProfile?.username}
+            </Typography>
         </Grid>
         <Grid container justifyContent={"center"}>
             <Grid sx={{
@@ -317,6 +351,22 @@ export default function Page() {
             }}>
                 Let's go!
             </Button>
+        </Box>
+        </Modal>
+        <Modal
+        open={openExchangeModal}>
+        <Box sx={style}>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+               Do you want to exchange contact information with this person?
+            </Typography>
+            <Grid container gap="20px">
+                <Button variant="contained" sx={{ mt: 2, backgroundColor: red }}>
+                    No, thanks!
+                </Button>
+                <Button variant="contained" sx={{ mt: 2, backgroundColor: darkBlue }}>
+                    Of course!
+                </Button>
+            </Grid>
         </Box>
         </Modal>
     </Stack>
