@@ -638,10 +638,10 @@ let theme = simularCategories(Profiles[0], Profiles);
 let chosenTheme = chosenChatThemeArray(theme)
 // export const questions = getArrayWithQuestions(chosenTheme);
 export const questions = [
-    {[Categories.Music]:[
+    {Music:[
         "What are some unpopular songs you're interested in?", 
         "Who are some artists that have made an impact on you?"
     ]},
-    {[Categories.Sport]: ["What are some major sporting events that you have attend?", "Who are some legendary athletes that have left a lasting impression on you?"]},
+    {Sport: ["What are some major sporting events that you have attend?", "Who are some legendary athletes that have left a lasting impression on you?"]},
 ]
 getArrayWithQuestions(chosenTheme);

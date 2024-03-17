@@ -127,7 +127,7 @@ const MessageBox = (props: {message: IMessage, user: number}) => {
     return (
     <Grid container width={"100%"} justifyContent={getJustify(props)}>
         <Grid sx={getMessageStyle(props)}>
-            {props.message.type === MessageType.ANNOUNCEMENT && <Typography sx={{ textAlign: 'center', fontSize: '14px', marginBottom: '0' }}>NEW TOPIC:</Typography>}
+            {props.message.type === MessageType.ANNOUNCEMENT && <Typography sx={{ textAlign: 'center', fontSize: '14px', marginBottom: '0' }}>NEW QUESTION:</Typography>}
             <Typography sx={getTextStyle(props)}>{props.message.text}</Typography>
         </Grid>
     </Grid>
@@ -315,9 +315,9 @@ export default function Page() {
                 <Typography sx={{ fontFamily: 'GilroyExtraBold', color: white }}>C R E O N</Typography>
                 <Grid display={'flex'} gap={1} sx={{ color: white, fontSize: '20px', fontFamily: 'GilroyBold' }}>
                     <PersonIcon sx={{ color: "#FFF", fontSize: '30px' }}/>
-                    {userProfile?.username}
+                    {userProfile2?.username}
                 </Grid>
-                <CloseIcon sx={{ color: "#FFF", fontSize: '40px' }} onClick={() => router.push('/dashboard')}/>
+                <CloseIcon sx={{ color: "#FFF", fontSize: '40px', width: '70px', display: 'flex', flexDirection: 'row-reverse' }} onClick={() => router.push('/dashboard')}/>
             </Grid>
             <Grid container justifyContent={"center"}>
                 <Grid sx={{
@@ -326,8 +326,8 @@ export default function Page() {
                     padding: "8px 16px",
                     textAlign: "center",
                 }}>
-                <Typography>Current category: <strong className={'currentBold'}>{getTopicName(questions, topic)}</strong></Typography>
-                <Typography>Current topic: <strong className={'currentBold'}>{getQuestionString(questions, topic, question)}</strong></Typography>
+                <Typography><strong className={'currentBold uppercase'}>{getTopicName(questions, topic)}</strong></Typography>
+                <Typography>Current question: <strong className={'currentBold'}>{getQuestionString(questions, topic, question)}</strong></Typography>
             </Grid>
             {chatStart && !openExchangeModal && !showContacts && (
                 <LinearProgress className={'progressBar'} variant="determinate" value={progress} />
@@ -434,7 +434,7 @@ export default function Page() {
         </Box>
         </Modal>
         <Modal
-            open={true}>
+            open={showContacts}>
         <Box className={'contactModal'}>
             <Typography sx={{ fontFamily: 'GilroyExtraBold', fontSize: '24px', textAlign: 'center', marginBottom: '36px' }}>
                 Here are the contact details of the person you just chatted with!

@@ -26,6 +26,12 @@
     font-size: 14px;
 }
 
+.uppercase {
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
 .modal {
     border-radius: 20px;
     border-top: 1px solid #b9b9b9;
@@ -38,7 +44,6 @@
 
 .css-vqmohf-MuiButtonBase-root-MuiRadio-root.Mui-checked {
     color: #5d4f6c;
-    color: rgba(94, 96, 103, 0.3);
 }
 
 .buttonContinue {
