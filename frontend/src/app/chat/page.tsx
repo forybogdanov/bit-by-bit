@@ -2,10 +2,12 @@
 import { Box, Button, CircularProgress, FormControlLabel, Grid, IconButton, Input, InputAdornment, LinearProgress, Modal, Radio, RadioGroup, Stack, Typography } from "@mui/material";
 import { useCallback, useDebugValue, useEffect, useState } from "react";
 import { io } from "socket.io-client";
-import {blueDark, darkBlue, lightBlue, orange, purpleDark, purpleLight, red, white} from "../Theme/theme";
+import { darkBlue, green, lightBlue, orange, red, white } from "../Theme/theme";
+import { blueDark, purpleDark, purpleLight } from "../Theme/theme";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import { questions } from "../matching";
 import { useRouter } from "next/navigation";
+import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 import PersonIcon from '@mui/icons-material/Person';
 import CloseIcon from '@mui/icons-material/Close';
 import "./style.css";
@@ -42,7 +44,7 @@ const styleSmall = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 300,
+    width: 350,
     boxShadow: 24,
     p: 4,
 }
@@ -55,9 +57,9 @@ const progressStyle = {
 }
 
 enum PollValue {
-    CHANGE_TOPIC="change topic",
-    KEEP_TOPIC="keep topic",
-    CHANGE_QUESTION="change question",
+    CHANGE_TOPIC = "change topic",
+    KEEP_TOPIC = "keep topic",
+    CHANGE_QUESTION = "change question",
 }
 
 const pollOptions = [
@@ -156,6 +158,8 @@ const defultChat: IMessage[] = [
 
 const maxTime = 5 * 1000;
 const maxQuestions = 2;
+const loadChatTime = 3000;
+const displayFoundMatchTime = 2000;
 
 interface UserProfile {
     username: string;
@@ -183,8 +187,10 @@ export default function Page() {
   const [userProfile2, setUserProfile2] = useState<UserProfile>();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const [step, setStep] = useState(0);
 
   const getMessage = useCallback(() => {
+    socket.off('message');
     socket.on('message', (message: IMessage) => {
         if (!chatStart) {
             setChatStart(new Date());
@@ -253,9 +259,8 @@ export default function Page() {
   }, [messages]);
 
     useEffect(() => {
-        if (!newTopicModal) {
             const interval = setInterval(() => {
-            if (chatStart) {
+            if (chatStart && !newTopicModal && !openExchangeModal) {
                 const now = new Date();
                 const elapsed = now.getTime() - chatStart?.getTime();
                 const progress = (elapsed / maxTime) * 100;
@@ -264,36 +269,67 @@ export default function Page() {
                     if (questionsCount < maxQuestions) {
                         setNewTopicModal(true);
                     } else {
+                        clearInterval(interval);
                         setOpenExchangeModal(true);
                     }
                 }
             }
             }, 100);
             return () => clearInterval(interval);
-        }
-    }, [chatStart, newTopicModal, questionsCount]);
+    }, [chatStart, newTopicModal, questionsCount, openExchangeModal]);
 
-  return (
-    <Stack className={'chat'}>
-        <Grid container width={"100%"} height={"64px"} sx={{ background: blueDark, padding: '0 24px' }} display={'flex'} alignItems={'center'} justifyContent={'space-between'}>
-            <Typography sx={{ fontFamily: 'GilroyExtraBold', color: white }}>C R E O N</Typography>
-            <Grid display={'flex'} gap={1} sx={{ color: white, fontSize: '20px', fontFamily: 'GilroyBold' }}>
-                <PersonIcon sx={{ color: "#FFF", fontSize: '30px' }}/>
-                {userProfile?.username}
+    useEffect(() => {
+        setTimeout(() => {
+            setStep(1);
+            setTimeout(() => {
+                setStep(2);
+            }, displayFoundMatchTime);
+        }, loadChatTime);
+    }, []);
+
+    if (step === 0) {
+        return (
+            <Stack justifyContent={"center"} alignItems={"center"} sx={{width: "100vw", height: "100vh"}}>
+                <Typography marginBottom={"20px"}>
+                    Searching for the perfect match!
+                </Typography>
+                <CircularProgress />
+            </Stack>
+        )
+    }
+
+    if (step === 1) {
+        return (
+            <Stack justifyContent={"center"} alignItems={"center"} sx={{width: "100vw", height: "100vh"}}>
+                <Typography marginBottom={"20px"}>
+                    Found a match!
+                </Typography>
+                <CheckCircleRoundedIcon sx={{fontSize: "100px", color: green}} />
+            </Stack>
+        )
+    }
+
+    return (
+        <Stack className={'chat'}>
+            <Grid container width={"100%"} height={"64px"} sx={{ background: blueDark, padding: '0 24px' }} display={'flex'} alignItems={'center'} justifyContent={'space-between'}>
+                <Typography sx={{ fontFamily: 'GilroyExtraBold', color: white }}>C R E O N</Typography>
+                <Grid display={'flex'} gap={1} sx={{ color: white, fontSize: '20px', fontFamily: 'GilroyBold' }}>
+                    <PersonIcon sx={{ color: "#FFF", fontSize: '30px' }}/>
+                    {userProfile?.username}
+                </Grid>
+                <CloseIcon sx={{ color: "#FFF", fontSize: '40px' }} onClick={() => router.push('/dashboard')}/>
             </Grid>
-            <CloseIcon sx={{ color: "#FFF", fontSize: '40px' }} onClick={() => router.push('/dashboard')}/>
-        </Grid>
-        <Grid container justifyContent={"center"}>
-            <Grid sx={{
-                background: purpleLight,
-                width: "100%",
-                padding: "8px 16px",
-                textAlign: "center",
-            }}>
+            <Grid container justifyContent={"center"}>
+                <Grid sx={{
+                    background: purpleLight,
+                    width: "100%",
+                    padding: "8px 16px",
+                    textAlign: "center",
+                }}>
                 <Typography>Current category: <strong className={'currentBold'}>{getTopicName(questions, topic)}</strong></Typography>
                 <Typography>Current topic: <strong className={'currentBold'}>{getQuestionString(questions, topic, question)}</strong></Typography>
             </Grid>
-            {chatStart && (
+            {chatStart && !openExchangeModal && !showContacts && (
                 <LinearProgress className={'progressBar'} variant="determinate" value={progress} />
             )}
         </Grid>
@@ -378,7 +414,7 @@ export default function Page() {
         </Box>
         </Modal>
         <Modal
-            open={openExchangeModal}>
+            open={openExchangeModal && !showContacts}>
         <Box sx={style} className={'exchangeModal'}>
             <Typography sx={{ fontSize: '24px', fontFamily: 'GilroyBold', textAlign: 'center', marginBottom: '24px' }}>
                Do you want to exchange contact information with this person?
@@ -389,11 +425,8 @@ export default function Page() {
                 </Button>
                 <Button variant="contained" className={'yesButton'} onClick={() => {
                     setOpenExchangeModal(false);
-                    setLoading(true);
-                    setTimeout(() => {
-                        setLoading(false);
-                        setShowContacts(true);
-                    }, 2000);
+                    setLoading(false);
+                    setShowContacts(true);
                 }}>
                     Of course
                 </Button>
@@ -425,7 +458,6 @@ export default function Page() {
             </Stack>
             <Grid display={'flex'} alignItems={'center'}>
                 <Button variant="contained" className={'yesButton wideButton'} onClick={() => {
-                    setShowContacts(false);
                     router.push('/dashboard');
                 }}>
                     Save to contacts
