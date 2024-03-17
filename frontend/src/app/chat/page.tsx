@@ -2,10 +2,11 @@
 import { Box, Button, CircularProgress, FormControlLabel, Grid, IconButton, Input, InputAdornment, LinearProgress, Modal, Radio, RadioGroup, Stack, Typography } from "@mui/material";
 import { useCallback, useDebugValue, useEffect, useState } from "react";
 import { io } from "socket.io-client";
-import { darkBlue, lightBlue, orange, red, white } from "../Theme/theme";
+import { darkBlue, green, lightBlue, orange, red, white } from "../Theme/theme";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import { questions } from "../matching";
 import { useRouter } from "next/navigation";
+import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 
 const BASE_URL = "http://localhost:4000";
 const socket = io(BASE_URL, {
@@ -144,6 +145,8 @@ const defultChat: IMessage[] = [
 
 const maxTime = 5 * 1000;
 const maxQuestions = 2;
+const loadChatTime = 3000;
+const displayFoundMatchTime = 2000;
 
 interface UserProfile {
     username: string;
@@ -171,6 +174,7 @@ export default function Page() {
   const [userProfile2, setUserProfile2] = useState<UserProfile>();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const [step, setStep] = useState(0);
 
   const getMessage = useCallback(() => {
     socket.on('message', (message: IMessage) => {
@@ -260,7 +264,38 @@ export default function Page() {
             return () => clearInterval(interval);
     }, [chatStart, newTopicModal, questionsCount, openExchangeModal]);
 
-  return (
+    useEffect(() => {
+        setTimeout(() => {
+            setStep(1);
+            setTimeout(() => {
+                setStep(2);
+            }, displayFoundMatchTime);
+        }, loadChatTime);
+    }, []);
+
+    if (step === 0) {
+        return (
+            <Stack justifyContent={"center"} alignItems={"center"} sx={{width: "100vw", height: "100vh"}}>
+                <Typography marginBottom={"20px"}>
+                    Searching for the perfect match!
+                </Typography>
+                <CircularProgress />
+            </Stack>
+        )
+    }
+
+    if (step === 1) {
+        return (
+            <Stack justifyContent={"center"} alignItems={"center"} sx={{width: "100vw", height: "100vh"}}>
+                <Typography marginBottom={"20px"}>
+                    Found a match!
+                </Typography>
+                <CheckCircleRoundedIcon sx={{fontSize: "100px", color: green}} />
+            </Stack>
+        )
+    }
+
+    return (
     <Stack sx={{width: "100vw", height: "100vh"}}>
         <Grid container width={"100%"} height={"80px"} sx={{background: darkBlue}}>
             <Typography sx={{color: white}}>
