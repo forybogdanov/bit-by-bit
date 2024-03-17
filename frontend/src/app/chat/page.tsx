@@ -236,12 +236,32 @@ export default function Page() {
     socket.on('newUser', (newUser: number) => {
       if(user === 0) {
         setUser(newUser);
+        if (newUser % 4 == 2) {
+            const userProfileFromLocalStorage = localStorage.getItem("userProfile");
+            const userProfileFromLocalStorage2 = localStorage.getItem("userProfile2");
+            if (userProfileFromLocalStorage) {
+                setUserProfile(JSON.parse(userProfileFromLocalStorage));
+            }
+            if (userProfileFromLocalStorage2) {
+                setUserProfile2(JSON.parse(userProfileFromLocalStorage2));
+            }
+        }
+        if (newUser % 4 == 0) {
+            const userProfileFromLocalStorage = localStorage.getItem("userProfile");
+            const userProfileFromLocalStorage2 = localStorage.getItem("userProfile2");
+            if (userProfileFromLocalStorage) {
+                setUserProfile2(JSON.parse(userProfileFromLocalStorage));
+            }
+            if (userProfileFromLocalStorage2) {
+                setUserProfile(JSON.parse(userProfileFromLocalStorage2));
+            }
+        }
       }
     });
     if (user === 0) {
       socket.emit('newUser');
     }
-  }, [user]);
+  }, [user, userProfile, userProfile2]);
 
   useEffect(() => {
     if (!socket.connected) {
@@ -252,15 +272,7 @@ export default function Page() {
 
   useEffect(() => {
     getUser();
-    const userProfileFromLocalStorage = localStorage.getItem("userProfile");
-    if (userProfileFromLocalStorage) {
-      setUserProfile(JSON.parse(userProfileFromLocalStorage));
-    }
-    const userProfileFromLocalStorage2 = localStorage.getItem("userProfile2");
-    if (userProfileFromLocalStorage2) {
-      setUserProfile2(JSON.parse(userProfileFromLocalStorage2));
-    }
-  }, [user, getUser]);
+  }, [user, getUser, userProfile, userProfile2]);
 
   const handlePollResult = useCallback(() => {
     socket.on('pollResults', ({result, questionsCount }: any) => {
@@ -385,7 +397,7 @@ export default function Page() {
                     bottom: "0",
                     alignItems: "center",
                     borderTop: '2px solid rgba(94, 96, 103, 0.3)',
-                }}>
+                }} className="input">
                     <Input
                         multiline
                         value={message}
