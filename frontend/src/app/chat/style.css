@@ -1,0 +1,139 @@
+.chat {
+    width: 60vw;
+    height: 100vh;
+    margin: 0 auto;
+    box-shadow: 2px 4px 12px 0 rgba(0, 0, 0, 0.4);
+}
+
+.progressBar {
+    width: 100%;
+    height: 5px;
+}
+
+.MuiLinearProgress-colorPrimary {
+    background-color: #FFF;
+}
+
+.MuiLinearProgress-barColorPrimary {
+    background-color: #17243D;
+}
+
+.css-78trlr-MuiButtonBase-root-MuiIconButton-root {
+    color: #17243D;
+}
+
+.currentBold {
+    font-size: 14px;
+}
+
+.modal {
+    border-radius: 20px;
+    border-top: 1px solid #b9b9b9;
+    border-right: 1px solid #b9b9b9;
+    border-bottom: 1px solid #b9b9b9;
+    border-left: 1px solid #b9b9b9;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 4px 6px 20px 0px rgba(0, 0, 0, 0.15);
+}
+
+.css-vqmohf-MuiButtonBase-root-MuiRadio-root.Mui-checked {
+    color: #5d4f6c;
+    color: rgba(94, 96, 103, 0.3);
+}
+
+.buttonContinue {
+    color: #FFF;
+    text-transform: none;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border-radius: 8px;
+    background: #C0ACD7;
+    width: 130px;
+    height: 44px;
+    font-family: GilroyExtraBold, sans-serif;
+    border: none;
+    cursor: pointer;
+    box-shadow: none;
+}
+
+.buttonContinue:hover {
+    background: #a38db0;
+}
+
+.exchangeModal {
+    border-radius: 16px;
+    border-top: 1px solid #b9b9b9;
+    border-right: 1px solid #b9b9b9;
+    border-bottom: 1px solid #b9b9b9;
+    border-left: 1px solid #b9b9b9;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 4px 6px 20px 0px rgba(0, 0, 0, 0.15);
+    width: 540px;
+}
+
+.noButton {
+    color: #17243D;
+    border: 1px solid #17243D;
+    text-transform: none;
+    font-size: 16px;
+    font-style: normal;
+    line-height: normal;
+    border-radius: 6px;
+    background: none;
+    width: 120px;
+    height: 36px;
+    font-family: GilroyExtraBold, sans-serif;
+    cursor: pointer;
+    box-shadow: none;
+}
+
+.noButton:hover {
+    background: #d2d2d2;
+}
+
+.yesButton {
+    color: #FFF;
+    text-transform: none;
+    font-size: 16px;
+    font-style: normal;
+    line-height: normal;
+    border-radius: 6px;
+    background: #C0ACD7;
+    width: 120px;
+    height: 36px;
+    font-family: GilroyExtraBold, sans-serif;
+    border: none;
+    cursor: pointer;
+    box-shadow: none;
+}
+
+.yesButton:hover {
+    background: #6d5f75;
+}
+
+.contactModal {
+    border-radius: 16px;
+    border-top: 1px solid #b9b9b9;
+    border-right: 1px solid #b9b9b9;
+    border-bottom: 1px solid #b9b9b9;
+    border-left: 1px solid #b9b9b9;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 4px 6px 20px 0px rgba(0, 0, 0, 0.15);
+    width: 540px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 36px;
+}
+
+.contactModalLabel {
+    font-size: 16px;
+    font-family: GilroyBold, sans-serif;
+}
+
+.wideButton {
+    width: 200px;
+}

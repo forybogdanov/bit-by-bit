@@ -2,7 +2,7 @@
 var Profiles = [];
 
 // Categories: music, sport , cinema, boks, biznes, arts, history, science, technology, politics, travel, cook
-const Categories = {
+export const Categories = {
     Music: 0,
     Sport: 1,
     Cinema: 2,

@@ -2,10 +2,13 @@
 import { Box, Button, CircularProgress, FormControlLabel, Grid, IconButton, Input, InputAdornment, LinearProgress, Modal, Radio, RadioGroup, Stack, Typography } from "@mui/material";
 import { useCallback, useDebugValue, useEffect, useState } from "react";
 import { io } from "socket.io-client";
-import { darkBlue, lightBlue, orange, red, white } from "../Theme/theme";
+import {blueDark, darkBlue, lightBlue, orange, purpleDark, purpleLight, red, white} from "../Theme/theme";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import { questions } from "../matching";
 import { useRouter } from "next/navigation";
+import PersonIcon from '@mui/icons-material/Person';
+import CloseIcon from '@mui/icons-material/Close';
+import "./style.css";
 
 const BASE_URL = "http://localhost:4000";
 const socket = io(BASE_URL, {
@@ -30,8 +33,16 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+}
+
+const styleSmall = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 300,
     boxShadow: 24,
     p: 4,
 }
@@ -58,27 +69,21 @@ const pollOptions = [
 const getMessageStyle = (props: any) => {
     if (props.message.type === MessageType.ANNOUNCEMENT) {
         return {
-            background: "radial-gradient(circle, rgba(255,255,255,1) 9%, rgba(48,48,48,1) 200%)|",
-            borderRadius: "16px",
-            boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
             backdropFilter: "blur(11.9px)",
             WebkitBackdropFilter: "blur(11.9px)",
-            border: "1px solid rgba(0, 0, 0, 0.2)",
-            padding: "8px 16px",
-            margin: "8px",
+            margin: "20px 10px",
         }
     }
-    if (props.message.type === MessageType.USER) {
+    if (props.message.type === MessageType.USER ) {
         return {
-            background: props.message.user === props.user ? darkBlue : lightBlue,
-            borderRadius: "8px",
-            margin: "8px",
+            background: props.message.user === props.user ? purpleLight : purpleDark,
+            borderRadius: props.message.user === props.user ? "32px 8px 32px 32px" : "8px 32px 32px 32px",
             maxWidth: "70%",
-            border: "1px solid #fsfsfs",
-            boxShadow: "0px 4px 3px #5f5f5f",
-            padding: "8px 16px",
+            marginBottom: '8px',
+            boxShadow: "2px 4px 12px 0 rgba(0, 0, 0, 0.1);",
+            padding: "12px 16px",
             animationName: `${props.message.user === props.user ? "fadeFromRight" : "fadeFromLeft"}`,
-            animationDuration: "1s",
+            animationDuration: "1.4s",
         }
     }
 }
@@ -86,18 +91,21 @@ const getMessageStyle = (props: any) => {
 const getTextStyle = (props: any) => {
     if (props.message.type === MessageType.ANNOUNCEMENT) {
         return {
-            color: "#000000",
-            fontSize: "20px",
+            color: "rgba(0,0,0,0.8)",
+            textShadow: "2px 4px 12px 0 rgba(0, 0, 0, 0.5);",
+            fontFamily: 'GilroyBold',
+            fontWeight: 500,
+            fontSize: '17px',
         }
     }
     if (props.message.user === props.user) {
         return {
-            color: white,
+            color: "#17243D",
             fontSize: "20px",
         }
     }
     return {
-        color: "#000000",
+        color: white,
         fontSize: "20px",
     }
 
@@ -111,13 +119,13 @@ const getJustify = (props: any) => {
     } else {
         return "start";
     }
-
 }
 
 const MessageBox = (props: {message: IMessage, user: number}) => {
     return (
     <Grid container width={"100%"} justifyContent={getJustify(props)}>
         <Grid sx={getMessageStyle(props)}>
+            {props.message.type === MessageType.ANNOUNCEMENT && <Typography sx={{ textAlign: 'center', fontSize: '14px', marginBottom: '0' }}>NEW TOPIC:</Typography>}
             <Typography sx={getTextStyle(props)}>{props.message.text}</Typography>
         </Grid>
     </Grid>
@@ -127,6 +135,10 @@ const MessageBox = (props: {message: IMessage, user: number}) => {
 const getBigTopic = (AllTopics: any[], index: number) => {
     return AllTopics[index];
 };
+
+const getTopicName = (AllTopics: any[], index: number) => {
+    return Object.keys(getBigTopic(AllTopics, index))[0];
+}
 
 const getQuestionString = (AllTopics: any[], topicsIndex: number, questionIndex: number) => {
     const BigTopic = getBigTopic(AllTopics, topicsIndex);
@@ -249,7 +261,6 @@ export default function Page() {
                 const progress = (elapsed / maxTime) * 100;
                 setProgress(progress);
                 if (progress >= 100) {
-                    console.log(questionsCount);
                     if (questionsCount < maxQuestions) {
                         setNewTopicModal(true);
                     } else {
@@ -263,42 +274,47 @@ export default function Page() {
     }, [chatStart, newTopicModal, questionsCount]);
 
   return (
-    <Stack sx={{width: "100vw", height: "100vh"}}>
-        <Grid container width={"100%"} height={"80px"} sx={{background: darkBlue}}>
-            <Typography sx={{color: white}}>
+    <Stack className={'chat'}>
+        <Grid container width={"100%"} height={"64px"} sx={{ background: blueDark, padding: '0 24px' }} display={'flex'} alignItems={'center'} justifyContent={'space-between'}>
+            <Typography sx={{ fontFamily: 'GilroyExtraBold', color: white }}>C R E O N</Typography>
+            <Grid display={'flex'} gap={1} sx={{ color: white, fontSize: '20px', fontFamily: 'GilroyBold' }}>
+                <PersonIcon sx={{ color: "#FFF", fontSize: '30px' }}/>
                 {userProfile?.username}
-            </Typography>
+            </Grid>
+            <CloseIcon sx={{ color: "#FFF", fontSize: '40px' }} onClick={() => router.push('/dashboard')}/>
         </Grid>
         <Grid container justifyContent={"center"}>
             <Grid sx={{
-                background: lightBlue,
-                maxWidth: "100%",
+                background: purpleLight,
+                width: "100%",
                 padding: "8px 16px",
                 textAlign: "center",
             }}>
-                <Typography>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </Typography>
-                {chatStart && (
-                    <LinearProgress variant="determinate" value={progress} />
-                )}
+                <Typography>Current category: <strong className={'currentBold'}>{getTopicName(questions, topic)}</strong></Typography>
+                <Typography>Current topic: <strong className={'currentBold'}>{getQuestionString(questions, topic, question)}</strong></Typography>
             </Grid>
+            {chatStart && (
+                <LinearProgress className={'progressBar'} variant="determinate" value={progress} />
+            )}
         </Grid>
         <Stack sx={{
-            padding: "40px 16px 100px 16px",
-            height: "100%",
+            padding: "5px 16px 5px 16px",
+            height: "calc(100vh - 80px - 40px - 90px + 5px)",
             overflowY: "scroll",
+            overflowX: 'hidden',
         }}>
             {messages.map((message, index) => (
             <MessageBox key={index} user={user} message={message}/>
             ))}
         </Stack>
-        <Grid container width={"100%"} sx={{
-            padding: "20px 40px",
+        <Grid container sx={{
+            width: '60vw',
+            padding: "13px 24px",
             background: "transparent",
             position: "fixed",
             bottom: "0",
             alignItems: "center",
+            borderTop: '2px solid rgba(94, 96, 103, 0.3)',
         }}>
         <Input
           multiline
@@ -311,8 +327,7 @@ export default function Page() {
             border: "1px solid #E7F0F5",
             background: "#FFF",
             boxShadow: "0px 4px 8px 0px rgba(0, 0, 0, 0.12)",
-            padding: "8px",
-            marginBottom: "16px",
+            padding: "10px 16px",
           }}
           endAdornment={
             <InputAdornment position="end">
@@ -333,45 +348,46 @@ export default function Page() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         >
-        <Box sx={style}>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-            Poll
+        <Box sx={style} className={'modal'}>
+            <Typography sx={{ fontSize: '20px', fontFamily: 'GilroyBold', marginBottom: '8px' }}>
+                Poll
             </Typography>
-            <Typography sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            <Typography sx={{ marginBottom: '16px' }}>
+                Select one of the following options regarding the next talking idea.
             </Typography>
             <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
                 defaultValue="female"
                 name="radio-buttons-group"
                 value={vote}
+                sx={{ marginBottom: '20px' }}
                 onChange={(e) => setVote(e.target.value as PollValue)}
             >
                 {pollOptions.map((option, index) => (
                     <FormControlLabel key={index} value={option.value} control={<Radio />} label={option.label} />
                 ))}
             </RadioGroup>
-            <Button variant="contained" sx={{ mt: 2 }} onClick={() =>  {
+            <Button variant="contained" className={'buttonContinue'} onClick={() =>  {
                 setNewTopicModal(false);
                 setChatStart(null);
                 socket.emit("vote", {vote});
                 setVote(null);
             }}>
-                Let's go!
+                Continue
             </Button>
         </Box>
         </Modal>
         <Modal
-        open={openExchangeModal}>
-        <Box sx={style}>
-            <Typography sx={{ mt: 2 }}>
+            open={openExchangeModal}>
+        <Box sx={style} className={'exchangeModal'}>
+            <Typography sx={{ fontSize: '24px', fontFamily: 'GilroyBold', textAlign: 'center', marginBottom: '24px' }}>
                Do you want to exchange contact information with this person?
             </Typography>
-            <Grid container gap="20px">
-                <Button variant="contained" sx={{ mt: 2, backgroundColor: red }}>
-                    No, thanks!
+            <Grid container display={'flex'} justifyContent={'space-around'}>
+                <Button variant="contained" className={'noButton'} onClick={() => router.push('/dashboard')}>
+                    No, thanks
                 </Button>
-                <Button variant="contained" sx={{ mt: 2, backgroundColor: darkBlue }} onClick={() => {
+                <Button variant="contained" className={'yesButton'} onClick={() => {
                     setOpenExchangeModal(false);
                     setLoading(true);
                     setTimeout(() => {
@@ -379,40 +395,42 @@ export default function Page() {
                         setShowContacts(true);
                     }, 2000);
                 }}>
-                    Of course!
+                    Of course
                 </Button>
             </Grid>
         </Box>
         </Modal>
         <Modal
-        open={showContacts}>
-        <Box sx={style}>
-            <Typography sx={{ mt: 2 }}>
+            open={true}>
+        <Box className={'contactModal'}>
+            <Typography sx={{ fontFamily: 'GilroyExtraBold', fontSize: '24px', textAlign: 'center', marginBottom: '36px' }}>
                 Here are the contact details of the person you just chatted with!
             </Typography>
-            <Stack gap="20px">
+            <Stack gap="12px" marginBottom={'28px'}>
                 <Typography>
-                    username: {userProfile2?.username}
+                    <span className={'contactModalLabel'}>username:</span> {userProfile2?.username}
                 </Typography>
                 <Typography>
-                    instagram: {userProfile2?.instagram}
+                    <span className={'contactModalLabel'}>instagram:</span> {userProfile2?.instagram}
                 </Typography>
                 <Typography>
-                    facebook: {userProfile2?.facebook}
+                    <span className={'contactModalLabel'}>facebook:</span> {userProfile2?.facebook}
                 </Typography>
                 <Typography>
-                    snapchat: {userProfile2?.snapchat}
+                    <span className={'contactModalLabel'}>snapchat:</span> {userProfile2?.snapchat}
                 </Typography>
                 <Typography>
-                    phone: {userProfile2?.phone}
+                    <span className={'contactModalLabel'}>phone:</span> {userProfile2?.phone}
                 </Typography>
-                <Button variant="contained" onClick={() => {
+            </Stack>
+            <Grid display={'flex'} alignItems={'center'}>
+                <Button variant="contained" className={'yesButton wideButton'} onClick={() => {
                     setShowContacts(false);
                     router.push('/dashboard');
                 }}>
                     Save to contacts
                 </Button>
-            </Stack>
+            </Grid>
         </Box>
         </Modal>
         <Modal open={loading}>
