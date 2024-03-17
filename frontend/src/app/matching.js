@@ -626,8 +626,8 @@ function getArrayWithQuestions(arrayThemes) {
 }
 
 // Call functions
-setProfile([{1: [2, 5]}, {0: [3, 4]}, {2: [1, 6]}]);
-setProfile([{2: [1, 6]}, {1: [3, 4]}, {3: [2, 5]}]);
+setProfile([{1: [2, 5]}, {0: [MusicSubCategories.Rap, 4]}, {2: [1, 6]}]);
+setProfile([{2: [1, 6]}, {0: [MusicSubCategories.Rap, 4]}, {3: [2, 5]}]);
 // Optionally, log the Profiles array to see all profiles
 //simularCategories(Profiles[0], Profiles);
 //chosenChatThemeArray(simularCategories(Profiles[0], Profiles));
@@ -636,5 +636,12 @@ setProfile([{2: [1, 6]}, {1: [3, 4]}, {3: [2, 5]}]);
 
 let theme = simularCategories(Profiles[0], Profiles);
 let chosenTheme = chosenChatThemeArray(theme)
-export const questions = getArrayWithQuestions(chosenTheme);
+// export const questions = getArrayWithQuestions(chosenTheme);
+export const questions = [
+    {[Categories.Music]:[
+        "What are some unpopular songs you're interested in?", 
+        "Who are some artists that have made an impact on you?"
+    ]},
+    {[Categories.Sport]: ["What are some major sporting events that you have attend?", "Who are some legendary athletes that have left a lasting impression on you?"]},
+]
 getArrayWithQuestions(chosenTheme);

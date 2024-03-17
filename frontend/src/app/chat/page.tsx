@@ -177,6 +177,7 @@ export default function Page() {
   const [step, setStep] = useState(0);
 
   const getMessage = useCallback(() => {
+    socket.off('message');
     socket.on('message', (message: IMessage) => {
         if (!chatStart) {
             setChatStart(new Date());
