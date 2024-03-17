@@ -17,6 +17,7 @@ import RamenDiningIcon from '@mui/icons-material/RamenDining';
 import ChurchIcon from '@mui/icons-material/Church';
 import PublicIcon from '@mui/icons-material/Public';
 import TranslateIcon from '@mui/icons-material/Translate';
+import TerminalIcon from '@mui/icons-material/Terminal';
 import { Button, Grid, Typography } from "@mui/material";
 import { useState } from "react";
 import {
@@ -25,7 +26,8 @@ import {
     MusicSubCategories, ScienceSubCategories,
     PoliticsSubCategories, SportSubCategories,
     TechnologySubCategories, CookingSubCategories,
-    TravelSubCategories, ReligionSubCategories, GeographySubCategories
+    TravelSubCategories, ReligionSubCategories, GeographySubCategories,
+    CodingSubCategories
 } from "@/app/setup/utils";
 
 const categories = [
@@ -148,6 +150,14 @@ const categories = [
         lightColor: 'rgba(146,207,242,0.7)',
         darkColor: '#236f96',
         subCategories: [],
+    },
+    {
+        index: 15,
+        name: "Coding",
+        icon: TerminalIcon,
+        lightColor: '#DCC7BE',
+        darkColor: '#A97660',
+        subCategories: CodingSubCategories,
     }
 ]
 

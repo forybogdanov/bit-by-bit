@@ -332,6 +332,15 @@ export default function Page() {
         }, loadChatTime);
     }, []);
 
+    const scrollToBottom = () => {
+        const chat = document.getElementById('chat');
+        chat?.scrollTo(0, chat.scrollHeight);
+    };
+
+    useEffect(() => {
+        scrollToBottom();
+    }, [messages]);
+
     if (step === 0) {
         return (
             <Stack justifyContent={"center"} alignItems={"center"} sx={{width: "100vw", height: "100vh"}}>
@@ -379,7 +388,7 @@ export default function Page() {
                         <LinearProgress className={'progressBar'} variant="determinate" value={progress} />
                     )}
                 </Grid>
-                <Stack sx={{
+                <Stack id="chat" sx={{
                     padding: "5px 16px 5px 16px",
                     height: "calc(100vh - 80px - 40px - 90px + 5px)",
                     overflowY: "scroll",
@@ -399,6 +408,12 @@ export default function Page() {
                     borderTop: '2px solid rgba(94, 96, 103, 0.3)',
                 }} className="input">
                     <Input
+                        onKeyUp={(e) => {
+                            if (e.key === "Enter" && message !== "") {
+                                socket.emit("message", {text: message, user,type: MessageType.USER});
+                                setMessage("");
+                            }
+                        }}
                         multiline
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}

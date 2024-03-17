@@ -112,7 +112,7 @@
     border-right: 1px solid #b9b9b9;
     border-bottom: 1px solid #b9b9b9;
     border-left: 1px solid #b9b9b9;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.9);
     box-shadow: 4px 6px 20px 0px rgba(0, 0, 0, 0.15);
     width: 540px;
 }
@@ -163,7 +163,7 @@
     border-right: 1px solid #b9b9b9;
     border-bottom: 1px solid #b9b9b9;
     border-left: 1px solid #b9b9b9;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.9);
     box-shadow: 4px 6px 20px 0px rgba(0, 0, 0, 0.15);
     width: 540px;
     position: absolute;

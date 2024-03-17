@@ -259,3 +259,21 @@ export const GeographySubCategories = [
     { index: GeographySubCategoriesIndexes.Countries, name: 'Countries' },
     { index: GeographySubCategoriesIndexes.Continents, name: 'Continents' },
 ];
+
+const CodingSubCategoriesIndexes = {
+    Algorithm: 0,
+    Hackathon: 1,
+    MachineLearning: 2,
+    WebDevelopment: 3,
+    MobileDevelopment: 4,
+    DataScience: 5,
+};
+
+export const CodingSubCategories = [
+    { index: CodingSubCategoriesIndexes.Algorithm, name: 'Algorithm' },
+    { index: CodingSubCategoriesIndexes.Hackathon, name: 'Hackathon' },
+    { index: CodingSubCategoriesIndexes.MachineLearning, name: 'Machine learning' },
+    { index: CodingSubCategoriesIndexes.WebDevelopment, name: 'Web development' },
+    { index: CodingSubCategoriesIndexes.MobileDevelopment, name: 'Mobile  development' },
+    { index: CodingSubCategoriesIndexes.DataScience, name: 'Data science' },
+];
