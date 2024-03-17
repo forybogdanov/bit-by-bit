@@ -1,8 +1,42 @@
+.chatBackground {
+    display: flex;
+    background: radial-gradient(162.45% 162.45% at 50% 50%, rgba(13, 21, 46, 0.95) 0%, rgba(13, 21, 46, 0.50) 100%);
+    backdrop-filter: blur(7.5px);
+    position: relative;
+    overflow: hidden;
+}
+
+.circleChatOne {
+    position: absolute;
+    bottom: -400px;
+    right: -200px;
+}
+
+.circleChatTwo {
+    position: absolute;
+    left: -320px;
+    top: -100px;
+}
+
+.circleChatThree {
+    position: absolute;
+    right: 0;
+    top: -50px;
+}
+
+.circleChatFour {
+    position: absolute;
+    left: 20px;
+    bottom: -250px;
+}
+
 .chat {
     width: 60vw;
     height: 100vh;
     margin: 0 auto;
     box-shadow: 2px 4px 12px 0 rgba(0, 0, 0, 0.4);
+    background: #FFF;
+    z-index: 100;
 }
 
 .progressBar {

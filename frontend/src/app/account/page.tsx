@@ -3,29 +3,29 @@ import { Button, Grid, Typography } from "@mui/material";
 import * as React from "react";
 
 const user = {
-    username: "Rami04",
-    firstName: "Rami",
-    secondName: "Hennawi",
-    email: "rami@gmail.com",
-    facebook: "Rami Hennawi",
-    instagram: "@rami_hennawi",
-    snapchat: "@rami78",
+    username: "johndoe",
+    firstName: "John",
+    secondName: "Doe",
+    email: "john@doe.com",
+    facebook: "John Doe",
+    instagram: "@johnny_doe",
+    snapchat: "-",
     phone: "+0829424124",
 }
 
 const connections = [
     {
-        username: "VladiCI",
-        facebook: "Vladimir Ivanov",
-        instagram: "@vladii",
-        snapchat: "",
-        phone: "",
+        username: "jjane",
+        facebook: "Joanne Troe",
+        instagram: "@jtroe",
+        snapchat: "@jtroe",
+        phone: "-",
     },
     {
-        username: "Antonka",
+        username: "ouplex",
         facebook: "",
-        instagram: "@toni_bonboni",
-        snapchat: "@gambleking",
+        instagram: "@ttray",
+        snapchat: "@ttray32",
         phone: "+028359324",
     },
 ];
