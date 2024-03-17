@@ -638,10 +638,12 @@ let theme = simularCategories(Profiles[0], Profiles);
 let chosenTheme = chosenChatThemeArray(theme)
 // export const questions = getArrayWithQuestions(chosenTheme);
 export const questions = [
-    {Music:[
-        "What are some unpopular songs you're interested in?", 
-        "Who are some artists that have made an impact on you?"
+    {Movies:[
+        "What do you think about Dune 2?", 
+        "Barbie or Openheimer?"
     ]},
-    {Sport: ["What are some major sporting events that you have attend?", "Who are some legendary athletes that have left a lasting impression on you?"]},
+    {Programming: [
+        "What's your favourite thing about hackathons?",
+    ]},
 ]
 getArrayWithQuestions(chosenTheme);
